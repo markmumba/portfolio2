@@ -175,18 +175,16 @@ const Footer = () => {
                             © {currentYear} Mark Mumba Tech Journal. All rights reserved.
                         </div>
                         <div className="flex space-x-4 mt-2 md:mt-0">
-                            <a
-                                href="/privacy"
+                            <p
                                 className="hover:text-accent-red transition-colors duration-200"
                             >
                                 Privacy Policy
-                            </a>
-                            <a
-                                href="/terms"
+                            </p>
+                            <p
                                 className="hover:text-accent-red transition-colors duration-200"
                             >
                                 Terms of Service
-                            </a>
+                            </p>
                         </div>
                     </div>
                 </div>
