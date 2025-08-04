@@ -33,7 +33,7 @@ const Header = () => {
                             MARK MUMBA TECH JOURNAL
                         </h1>
                         <p className="text-lg md:text-xl text-newspaper-gray mt-3 font-newspaper italic">
-                            "Chronicling the Engineering Journey of a Builder, Thinker & Problem-Solver"
+                            &quot;Building the backbone of tomorrow&apos;s applications&quot;
                         </p>
                         <div className="text-sm text-newspaper-gray mt-3 font-mono border-t border-gray-300 pt-2 inline-block">
                             {currentDate}

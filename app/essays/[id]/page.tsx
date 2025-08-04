@@ -1,26 +1,30 @@
 import { getEssayById } from "@/lib/contentful";
 import RichTextRenderer from "@/lib/richtext";
 import { Document } from "@contentful/rich-text-types";
+import Link from "next/link";
 
-const extractText = (richText: any): string => {
+const extractText = (richText: unknown): string => {
     if (typeof richText === 'string') {
         return richText;
     }
-    if (richText?.content?.[0]?.content?.[0]?.value) {
-        return richText.content[0].content[0].value;
+    if (richText && typeof richText === 'object' && 'content' in richText) {
+        const richTextObj = richText as { content?: Array<{ content?: Array<{ value?: string }> }> };
+        const content = richTextObj.content?.[0]?.content?.[0]?.value;
+        return content || '';
     }
     return '';
 };
 
-export default async function EssayPage({ params }: { params: { id: string } }) {
-    const essay = await getEssayById(params.id);
+export default async function EssayPage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
+    const essay = await getEssayById(id);
 
     if (!essay) {
         return (
             <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center p-4">
                 <div className="text-center bg-newspaper-white p-8 rounded-lg shadow-2xl transform rotate-1">
                     <h1 className="text-4xl font-newspaper font-black text-black mb-4">ARTICLE NOT FOUND</h1>
-                    <p className="text-newspaper-gray font-newspaper">The article you're looking for doesn't exist.</p>
+                    <p className="text-newspaper-gray font-newspaper">The article you&apos;re looking for doesn&apos;t exist.</p>
                 </div>
             </div>
         );
@@ -88,15 +92,15 @@ export default async function EssayPage({ params }: { params: { id: string } }) 
                         <footer className="mt-16 pt-10 border-t-2 border-gray-300">
                             <div className="text-center">
                                 <p className="text-newspaper-gray font-newspaper italic mb-6 text-lg">
-                                    "The best code is no code at all, but when you must write it, make it readable."
+                                    &quot;The best code is no code at all, but when you must write it, make it readable.&quot;
                                 </p>
                                 <div className="flex justify-center space-x-8 text-sm text-newspaper-gray font-mono">
-                                    <a href="/" className="hover:text-black transition-colors duration-200">
+                                    <Link href="/" className="hover:text-black transition-colors duration-200">
                                         ← Back to Home
-                                    </a>
-                                    <a href="/#essays" className="hover:text-black transition-colors duration-200">
+                                    </Link>
+                                    <Link href="/#essays" className="hover:text-black transition-colors duration-200">
                                         ← All Essays
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </footer>

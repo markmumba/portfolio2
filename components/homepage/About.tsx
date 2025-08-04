@@ -33,15 +33,15 @@ const timelineEvents: TimelineEvent[] = [
 const skills: Skill[] = [
     {
         category: 'Languages & Frameworks',
-        items: ['Java', 'Spring Boot', 'Next.js', 'TypeScript', 'Python', 'React','Tailwind CSS']
+        items: ['Java', 'Spring Boot', 'Next.js', 'TypeScript', 'Python', 'React', 'Tailwind CSS']
     },
     {
         category: 'Infrastructure & Tools',
-        items: ['Docker', 'PostgreSQL', 'MongoDB', 'VPS', 'Linux','Git','Nginx','CI/CD']
+        items: ['Docker', 'PostgreSQL', 'MongoDB', 'VPS', 'Linux', 'Git', 'Nginx', 'CI/CD']
     },
     {
         category: 'Architecture & Design',
-        items: ['Microservices', 'REST APIs','DDD']
+        items: ['Microservices', 'REST APIs', 'DDD']
     }
 ];
 
@@ -76,7 +76,7 @@ const About = () => {
                                     Years later, I chose to pursue Computer Science, and it was like discovering a new universe. Compiler construction, distributed systems, concurrency—each concept revealed just how deep the rabbit hole goes. I was hooked.
                                 </p>
                                 <p className="text-lg text-black font-newspaper leading-relaxed mb-6">
-                                    If there's one thing this journey has taught me, it’s the importance of curiosity. Try, fail, learn, and try again. As Alan Watts said: “The purpose of music is not the end of the composition... the whole point of the dancing is the dance.” For me, software engineering is the same—the beauty is in the process, the iteration, and the joy of building something meaningful.
+                                    If there&apos;s one thing this journey has taught me, it&apos;s the importance of curiosity. Try, fail, learn, and try again. As Alan Watts said: &quot;The purpose of music is not the end of the composition... the whole point of the dancing is the dance.&quot; For me, software engineering is the same—the beauty is in the process, the iteration, and the joy of building something meaningful.
                                 </p>
                             </div>
                         </div>
@@ -169,10 +169,10 @@ const About = () => {
                         {/* Call to Action */}
                         <div className="bg-accent-red text-white border-2 border-black p-6 mb-8">
                             <h3 className="text-xl font-newspaper font-bold mb-4">
-                                Let's Build Something Amazing
+                                Let&apos;s Build Something Amazing
                             </h3>
                             <p className="text-sm mb-6 font-newspaper">
-                                Ready to collaborate on your next project? I'm always interested in challenging
+                                Ready to collaborate on your next project? I&apos;m always interested in challenging
                                 problems and meaningful work.
                             </p>
                             <div className="space-y-3">

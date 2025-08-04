@@ -1,15 +1,16 @@
 import Link from "next/link";
 import { getEssays } from "@/lib/contentful";
 import { Essay } from "@/lib/definition";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
 // Helper function to extract text from rich text objects
-const extractText = (richText: any): string => {
+const extractText = (richText: unknown): string => {
     if (typeof richText === 'string') {
         return richText;
     }
-    if (richText?.content?.[0]?.content?.[0]?.value) {
-        return richText.content[0].content[0].value;
+    if (richText && typeof richText === 'object' && 'content' in richText) {
+        const richTextObj = richText as { content?: Array<{ content?: Array<{ value?: string }> }> };
+        const content = richTextObj.content?.[0]?.content?.[0]?.value;
+        return content || '';
     }
     return '';
 };
@@ -92,7 +93,6 @@ const Essays = async () => {
     const essays = await getEssays();
 
 
-
     return (
         <section id="essays" className="py-12 bg-newspaper-white border-t-4 border-black">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -102,16 +102,16 @@ const Essays = async () => {
                         ESSAYS & REFLECTIONS
                     </h2>
                     <p className="text-lg text-newspaper-gray font-newspaper italic">
-                        Opinion columns and weekly thoughts from the editor's desk
+                        Opinion columns and weekly thoughts from the editor&apos;s desk
                     </p>
                     <div className="w-24 h-1 bg-black mx-auto mt-4"></div>
                 </div>
 
-                {essays.map((essay) => (
-                    <EssayCard key={essay.id} essay={essay} />
-                ))}
-
-
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    {essays.map((essay) => (
+                        <EssayCard key={essay.id} essay={essay} />
+                    ))}
+                </div>
 
                 {/* Reach Out CTA */}
                 <div className="mt-12 text-center bg-gray-100 p-8 border-2 border-black">
@@ -120,7 +120,7 @@ const Essays = async () => {
                     </h3>
                     <p className="text-newspaper-gray font-newspaper mb-6">
                         I love discussing backend architecture, team culture, and engineering challenges.
-                        If you have ideas, questions, or just want to chat about code, let's connect.
+                        If you have ideas, questions, or just want to chat about code, let&apos;s connect.
                     </p>
                     <a
                         href="mailto:mumbamarkian@gmail.com"

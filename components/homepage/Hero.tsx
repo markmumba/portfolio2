@@ -11,7 +11,7 @@ const Hero = () => {
                         <div className="border-b-4 border-black pb-6 mb-6">
                             {/* Main Headline - Updated */}
                             <h2 className="text-3xl md:text-5xl font-newspaper font-black text-black leading-tight mb-4">
-                                "Early Days, Big Ideas: One Engineer's Journey Into Building Systems That Matter"
+                                &quot;Early Days, Big Ideas: One Engineer&apos;s Journey Into Building Systems That Matter&quot;
                             </h2>
                             <div className="text-sm text-newspaper-gray font-mono uppercase tracking-wider">
                                 FROM THE FIELD • LEARNING CURVES • REAL ENGINEERING
@@ -21,14 +21,14 @@ const Hero = () => {
                         <div className="prose prose-lg max-w-none">
                             {/* Paragraph - Honest & Grounded */}
                             <p className="text-lg md:text-xl text-black font-newspaper leading-relaxed mb-6">
-                                I'm a software engineer exploring how to build systems that are scalable, reliable, and genuinely useful. I work mostly with Java, Spring Boot, and Next.js — and I'm learning how to turn complex problems into clean, maintainable solutions.
+                                I&apos;m a software engineer exploring how to build systems that are scalable, reliable, and genuinely useful. I work mostly with Java, Spring Boot, and Next.js — and I&apos;m learning how to turn complex problems into clean, maintainable solutions.
                             </p>
 
                             {/* Quote Block - Authentic and Human */}
                             <div className="bg-gray-100 p-4 border-l-4 border-accent-red">
                                 <p className="text-sm text-newspaper-gray font-newspaper italic">
-                                    "Sometimes I stare at the screen for hours, thinking, refactoring, and wondering if there's a better way.
-                                    It's messy, it's real, and that's what makes the process worth it."
+                                    &quot;Sometimes I stare at the screen for hours, thinking, refactoring, and wondering if there&apos;s a better way.
+                                    It&apos;s messy, it&apos;s real, and that&apos;s what makes the process worth it.&quot;
                                 </p>
                                 <div className="text-xs text-newspaper-gray mt-2 font-mono">
                                     — Mark Mumba, Software Engineer

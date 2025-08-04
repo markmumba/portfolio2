@@ -149,7 +149,7 @@ const Footer = () => {
                             Ready to Build Something Amazing?
                         </h3>
                         <p className="text-newspaper-gray font-newspaper mb-4">
-                            Let's collaborate on your next project. I'm always interested in challenging problems and meaningful work.
+                            I&apos;m always interested in hearing about new opportunities and interesting projects.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-3 justify-center">
                             <a

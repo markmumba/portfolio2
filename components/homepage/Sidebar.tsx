@@ -57,8 +57,8 @@ const Sidebar = () => {
                     <h3 className="text-lg font-newspaper font-bold mb-3">
                         Get in Touch
                     </h3>
-                    <p className="text-sm mb-4 font-newspaper">
-                        Ready to discuss your next project? Let's build something amazing together.
+                    <p className="text-newspaper-gray font-newspaper text-sm">
+                        I&apos;m a backend engineer passionate about building reliable, scalable systems.
                     </p>
                     <a
                         href="mailto:mark@example.com"

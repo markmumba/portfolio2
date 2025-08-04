@@ -1,6 +1,7 @@
 // components/RichTextRenderer.js
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { BLOCKS, MARKS, INLINES, Document, Text } from '@contentful/rich-text-types';
+import { BLOCKS, MARKS, INLINES, Document, Block, Inline } from '@contentful/rich-text-types';
+import Image from 'next/image';
 
 const renderOptions = {
   renderMark: {
@@ -17,79 +18,79 @@ const renderOptions = {
     [MARKS.SUBSCRIPT]: (text: React.ReactNode) => <sub className="text-xs">{text}</sub>,
   },
   renderNode: {
-    [BLOCKS.PARAGRAPH]: (node: any, children: React.ReactNode) => (
+    [BLOCKS.PARAGRAPH]: (node: Block | Inline, children: React.ReactNode) => (
       <p className="mb-6 leading-relaxed text-black font-newspaper text-lg">{children}</p>
     ),
-    [BLOCKS.HEADING_1]: (node: any, children: React.ReactNode) => (
+    [BLOCKS.HEADING_1]: (node: Block | Inline, children: React.ReactNode) => (
       <h1 className="text-3xl font-newspaper font-black text-black mb-6 mt-8 border-b-2 border-black pb-2">
         {children}
       </h1>
     ),
-    [BLOCKS.HEADING_2]: (node: any, children: React.ReactNode) => (
+    [BLOCKS.HEADING_2]: (node: Block | Inline, children: React.ReactNode) => (
       <h2 className="text-2xl font-newspaper font-bold text-black mb-5 mt-7 border-b border-gray-300 pb-1">
         {children}
       </h2>
     ),
-    [BLOCKS.HEADING_3]: (node: any, children: React.ReactNode) => (
+    [BLOCKS.HEADING_3]: (node: Block | Inline, children: React.ReactNode) => (
       <h3 className="text-xl font-newspaper font-bold text-black mb-4 mt-6">
         {children}
       </h3>
     ),
-    [BLOCKS.HEADING_4]: (node: any, children: React.ReactNode) => (
+    [BLOCKS.HEADING_4]: (node: Block | Inline, children: React.ReactNode) => (
       <h4 className="text-lg font-newspaper font-bold text-black mb-3 mt-5">
         {children}
       </h4>
     ),
-    [BLOCKS.HEADING_5]: (node: any, children: React.ReactNode) => (
-      <h5 className="text-base font-newspaper font-bold text-black mb-2 mt-4">
+    [BLOCKS.HEADING_5]: (node: Block | Inline, children: React.ReactNode) => (
+      <h5 className="text-lg font-newspaper font-bold text-black mb-2 mt-4">
         {children}
       </h5>
     ),
-    [BLOCKS.HEADING_6]: (node: any, children: React.ReactNode) => (
-      <h6 className="text-sm font-newspaper font-bold text-black mb-2 mt-4">
+    [BLOCKS.HEADING_6]: (node: Block | Inline, children: React.ReactNode) => (
+      <h6 className="text-base font-newspaper font-bold text-black mb-2 mt-4">
         {children}
       </h6>
     ),
-    [BLOCKS.UL_LIST]: (node: any, children: React.ReactNode) => (
+    [BLOCKS.UL_LIST]: (node: Block | Inline, children: React.ReactNode) => (
       <ul className="list-disc list-inside mb-6 space-y-2 text-black font-newspaper pl-4">
         {children}
       </ul>
     ),
-    [BLOCKS.OL_LIST]: (node: any, children: React.ReactNode) => (
+    [BLOCKS.OL_LIST]: (node: Block | Inline, children: React.ReactNode) => (
       <ol className="list-decimal list-inside mb-6 space-y-2 text-black font-newspaper pl-4">
         {children}
       </ol>
     ),
-    [BLOCKS.LIST_ITEM]: (node: any, children: React.ReactNode) => (
+    [BLOCKS.LIST_ITEM]: (node: Block | Inline, children: React.ReactNode) => (
       <li className="ml-4 leading-relaxed">{children}</li>
     ),
-    [BLOCKS.QUOTE]: (node: any, children: React.ReactNode) => (
+    [BLOCKS.QUOTE]: (node: Block | Inline, children: React.ReactNode) => (
       <blockquote className="border-l-4 border-accent-red pl-6 py-4 mb-6 italic text-newspaper-gray bg-gray-50 rounded-r font-newspaper text-lg">
-        "{children}"
+        &quot;{children}&quot;
       </blockquote>
     ),
     [BLOCKS.HR]: () => <hr className="my-8 border-2 border-black" />,
-    [BLOCKS.TABLE]: (node: any, children: React.ReactNode) => (
+    [BLOCKS.TABLE]: (node: Block | Inline, children: React.ReactNode) => (
       <div className="overflow-x-auto mb-6 border-2 border-black">
         <table className="min-w-full border-collapse">
           <tbody className="font-newspaper">{children}</tbody>
         </table>
       </div>
     ),
-    [BLOCKS.TABLE_ROW]: (node: any, children: React.ReactNode) => (
+    [BLOCKS.TABLE_ROW]: (node: Block | Inline, children: React.ReactNode) => (
       <tr className="border-b border-gray-300">{children}</tr>
     ),
-    [BLOCKS.TABLE_CELL]: (node: any, children: React.ReactNode) => (
+    [BLOCKS.TABLE_CELL]: (node: Block | Inline, children: React.ReactNode) => (
       <td className="border border-gray-300 px-4 py-3 text-black">{children}</td>
     ),
-    [BLOCKS.TABLE_HEADER_CELL]: (node: any, children: React.ReactNode) => (
+    [BLOCKS.TABLE_HEADER_CELL]: (node: Block | Inline, children: React.ReactNode) => (
       <th className="border border-gray-300 px-4 py-3 bg-gray-100 font-newspaper font-bold text-black">
         {children}
       </th>
     ),
-    [INLINES.HYPERLINK]: (node: any, children: React.ReactNode) => (
+    [INLINES.HYPERLINK]: (node: Block | Inline, children: React.ReactNode) => (
       <a
-        href={node.data.uri}
+        href={(node as { data?: { uri?: string } }).data?.uri}
         target="_blank"
         rel="noopener noreferrer"
         className="text-accent-red hover:text-red-700 underline font-newspaper"
@@ -97,17 +98,17 @@ const renderOptions = {
         {children}
       </a>
     ),
-    [INLINES.ENTRY_HYPERLINK]: (node: any, children: React.ReactNode) => (
+    [INLINES.ENTRY_HYPERLINK]: (node: Block | Inline, children: React.ReactNode) => (
       <a
-        href={`/articles/${node.data.target.sys.id}`}
+        href={`/articles/${(node as { data?: { target?: { sys?: { id?: string } } } }).data?.target?.sys?.id}`}
         className="text-accent-red hover:text-red-700 underline font-newspaper"
       >
         {children}
       </a>
     ),
-    [INLINES.ASSET_HYPERLINK]: (node: any, children: React.ReactNode) => (
+    [INLINES.ASSET_HYPERLINK]: (node: Block | Inline, children: React.ReactNode) => (
       <a
-        href={node.data.target.fields.file.url}
+        href={(node as { data?: { target?: { fields?: { file?: { url?: string } } } } }).data?.target?.fields?.file?.url}
         target="_blank"
         rel="noopener noreferrer"
         className="text-accent-red hover:text-red-700 underline font-newspaper"
@@ -115,13 +116,15 @@ const renderOptions = {
         {children}
       </a>
     ),
-    [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
-      const { title, description, file } = node.data.target.fields;
+    [BLOCKS.EMBEDDED_ASSET]: (node: Block | Inline) => {
+      const { title, description, file } = (node as { data?: { target?: { fields?: { title?: string; description?: string; file?: { url?: string } } } } }).data?.target?.fields || {};
       return (
         <div className="my-8 text-center">
-          <img
-            src={file.url}
-            alt={description || title}
+          <Image
+            src={file?.url || ''}
+            width={1000}
+            height={1000}
+            alt={description || title || ''}
             className="w-full max-w-2xl h-auto rounded-lg shadow-lg border-2 border-black mx-auto"
           />
           {title && (
@@ -132,13 +135,13 @@ const renderOptions = {
         </div>
       );
     },
-    [BLOCKS.EMBEDDED_ENTRY]: (node: any) => {
+    [BLOCKS.EMBEDDED_ENTRY]: (node: Block | Inline) => {
       // Handle embedded entries - you can customize this based on your content types
-      const entryType = node.data.target.sys.contentType.sys.id;
+      const entryType = (node as { data?: { target?: { sys?: { contentType?: { sys?: { id?: string } } } } } }).data?.target?.sys?.contentType?.sys?.id;
       return (
         <div className="my-6 p-6 border-2 border-black rounded-lg bg-gray-50">
           <p className="text-sm text-newspaper-gray font-newspaper">
-            Embedded {entryType}: {node.data.target.fields.title || 'Untitled'}
+            Embedded {entryType}: {(node as { data?: { target?: { fields?: { title?: string } } } }).data?.target?.fields?.title || 'Untitled'}
           </p>
         </div>
       );
