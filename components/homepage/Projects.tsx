@@ -15,41 +15,44 @@ interface Project {
 const projects: Project[] = [
     {
         id: '1',
-        title: 'Smart Garbage Collection System',
-        excerpt: 'A distributed IoT platform that optimizes waste collection routes using real-time sensor data and machine learning algorithms.',
+        title: 'Garbage Collection System',
+        excerpt: 'A fullstack waste management platform that connects households with local collectors, tracks pickups in real time, and automates payments and payouts — all built with Next.js, Spring Boot, and PostgreSQL.',
         category: 'System Spotlight',
-        tags: ['Java', 'Spring Boot', 'Docker', 'IoT', 'Machine Learning'],
-        imageUrl: '/api/placeholder/400/300',
-        githubUrl: 'https://github.com/markmumba/smart-garbage',
-        liveUrl: 'https://smart-garbage.demo.com',
+        tags: ['Java', 'Spring Boot', 'Next.js', 'PostgreSQL', 'Geolocation', 'WebSocket'],
+        imageUrl: '/bolla.webp',
+        githubUrl: 'https://github.com/markmumba/bolloapp-frontend',
+        liveUrl: 'https://app.blazor-movies.online/',
         featured: true
     },
     {
         id: '2',
-        title: 'M-Pesa Integration Platform',
-        excerpt: 'Enterprise-grade fintech integration system for East African mobile money services with real-time transaction processing.',
+        title: 'Rentitup',
+        excerpt: "A rental platform that connects machinery owners with people who need them — from small contractors to everyday homeowners. Built as a microservices system with Spring Boot and REST APIs, RentItUp handles listings, bookings, payments, and secure communication between users.",
         category: 'Microservices Series',
-        tags: ['Java', 'Spring Boot', 'Microservices', 'Fintech', 'REST API'],
-        imageUrl: '/api/placeholder/400/300',
-        githubUrl: 'https://github.com/markmumba/mpesa-platform'
+        tags: ['Java', 'Spring Boot', 'Next.js', 'REST API', 'PostgreSQL'],
+        imageUrl: '/rentitup.webp',
+        githubUrl: 'https://github.com/markmumba/rentitup-frontend',
+        liveUrl: 'https://rentitup.blazor-movies.online/'
     },
     {
         id: '3',
-        title: 'Healthcare Management System',
-        excerpt: 'Comprehensive patient management and appointment scheduling system for healthcare facilities across Kenya.',
+        title: 'ESTC Website',
+        excerpt: "A corporate website for ESTC, a professional training organization offering custom programs in Leadership, ICT, HR, and more. Built with Next.js and Tailwind CSS, the site communicates services clearly, showcases key programs, and supports client engagement through a responsive, modern UI.",
         category: 'Client Features',
-        tags: ['Next.js', 'TypeScript', 'PostgreSQL', 'Healthcare', 'Full Stack'],
-        imageUrl: '/api/placeholder/400/300',
-        liveUrl: 'https://healthcare-system.demo.com'
+        tags: ['Next.js', 'Tailwind CSS', 'Corporate Website', 'Responsive Design', 'Content Strategy'],
+        imageUrl: '/estc.webp',
+        liveUrl: 'https://estc-ivory.vercel.app/',
+        githubUrl: 'https://github.com/markmumba/estc',
     },
     {
         id: '4',
-        title: 'E-Commerce Analytics Dashboard',
-        excerpt: 'Real-time analytics and reporting dashboard for online retailers with advanced data visualization capabilities.',
-        category: 'Hackathon Dispatch',
-        tags: ['React', 'Node.js', 'MongoDB', 'Analytics', 'Data Visualization'],
-        imageUrl: '/api/placeholder/400/300',
-        githubUrl: 'https://github.com/markmumba/analytics-dashboard'
+        title: 'Bag street Kenya',
+        excerpt: "A platform for selling bags shoes and scarves.Gives a variety of goods to choose from and uses what app when you want to order. The seller uses contnentful CMS to manage the items listed.",
+        category: 'Client Features',
+        tags: ['Next.js', 'Tailwind CSS', 'Contentful CMS', 'Responsive Design', 'E-commerce','Whatsapp Integration'],
+        imageUrl: '/bsk.webp',
+        githubUrl: 'https://github.com/markmumba/bag_street_kenya',
+        liveUrl: 'https://bag-street-kenya-t4mz.vercel.app/'
     }
 ];
 
@@ -58,12 +61,12 @@ const ProjectCard = ({ project }: { project: Project }) => {
         <article className="bg-newspaper-white border-2 border-black shadow-lg hover:shadow-xl transition-shadow duration-300">
             {/* Project Image */}
             <div className="relative h-48 bg-gray-200 border-b-2 border-black overflow-hidden">
-                <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                        <div className="text-4xl mb-2">📊</div>
-                        <p className="text-sm text-newspaper-gray font-mono">Project Screenshot</p>
-                    </div>
-                </div>
+                <Image
+                    src={project.imageUrl}
+                    alt={`Screenshot of ${project.title}`}
+                    fill
+                    className="object-cover"
+                />
                 {project.featured && (
                     <div className="absolute top-2 left-2 bg-accent-red text-white px-2 py-1 text-xs font-mono uppercase tracking-wider">
                         Featured
