@@ -1,10 +1,20 @@
+export interface Essays {
+    id: string;
+    title: unknown; 
+    article: unknown; 
+    author: unknown; 
+    publishDate: unknown; 
+    category: unknown; 
+    sys: unknown;
+}
 export interface Essay {
     id: string;
-    title: unknown; // Rich text object from Contentful
-    article: unknown; // Rich text object from Contentful
-    author: unknown; // Rich text object from Contentful
-    tags?: string[];
-    publishDate: unknown; // Rich text object from Contentful
-    category: unknown; // Rich text object from Contentful
+    title: unknown; 
+    article: unknown;
+    author: unknown;
+    nugget: unknown;
+    nuggetAuthor: unknown;
+    publishDate: unknown; 
+    category: unknown; 
     sys: unknown;
 }

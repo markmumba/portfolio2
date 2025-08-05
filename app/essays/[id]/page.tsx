@@ -18,7 +18,7 @@ const extractText = (richText: unknown): string => {
 export default async function EssayPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
     const essay = await getEssayById(id);
-
+    console.log(essay);
     if (!essay) {
         return (
             <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center p-4">
@@ -34,7 +34,7 @@ export default async function EssayPage({ params }: { params: Promise<{ id: stri
         <div className="min-h-screen bg-gradient-to-br from-gray-100 via-gray-150 to-gray-200 p-4">
             {/* Crumpled Paper Container */}
             <div className="max-w-5xl mx-auto">
-                <div className="bg-newspaper-white shadow-2xl transform rotate-1 hover:rotate-0 transition-transform duration-500 ease-out relative">
+                <div className="bg-newspaper-white shadow-2xl  relative">
                     {/* Paper Texture Overlay */}
                     <div className="absolute inset-0 opacity-5 bg-gradient-to-br from-gray-300 to-gray-400 pointer-events-none rounded"></div>
 
@@ -92,7 +92,10 @@ export default async function EssayPage({ params }: { params: Promise<{ id: stri
                         <footer className="mt-16 pt-10 border-t-2 border-gray-300">
                             <div className="text-center">
                                 <p className="text-newspaper-gray font-newspaper italic mb-6 text-lg">
-                                    &quot;The best code is no code at all, but when you must write it, make it readable.&quot;
+                                    &quot;{extractText(essay.nugget)}&quot;
+                                </p>
+                                <p className="text-newspaper-gray font-newspaper italic mb-6 text-lg">
+                                    {extractText(essay.nuggetAuthor)}
                                 </p>
                                 <div className="flex justify-center space-x-8 text-sm text-newspaper-gray font-mono">
                                     <Link href="/" className="hover:text-black transition-colors duration-200">

@@ -20,11 +20,10 @@ export async function getEssays() {
                 : [];
 
             return {
-                id: item.sys.id, // Use the system ID which is always a string
+                id: String(item.fields.id),
                 title: item.fields.title,
                 article: item.fields.article,
                 author: item.fields.author,
-                tags,
                 publishDate: item.fields.publishDate,
                 category: item.fields.category,
                 sys: item.sys
@@ -40,7 +39,7 @@ export async function getEssayById(id: string) {
     try {
         const response = await client.getEntries({
             content_type: 'articles',
-            'sys.id': id, // Use sys.id instead of fields.id
+            'fields.id': id,
             limit: 1,
         });
         if (response.items.length === 0) {
@@ -48,20 +47,21 @@ export async function getEssayById(id: string) {
         }
         const item = response.items[0];
 
-        // Handle tags properly - convert to string array and filter out nulls
         const rawTags = item.fields.tags;
         const tags = Array.isArray(rawTags)
             ? rawTags.filter(tag => tag !== null && tag !== undefined).map(tag => String(tag))
             : [];
 
         return {
-            id: item.sys.id,
+            id: item.fields.id,
             title: item.fields.title,
             article: item.fields.article,
             author: item.fields.author,
             tags,
             publishDate: item.fields.publishDate,
             category: item.fields.category,
+            nugget: item.fields.nugget,
+            nuggetAuthor: item.fields.nuggetAuthor,
             sys: item.sys
         }
     } catch (error) {
