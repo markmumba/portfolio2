@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
 const Header = () => {
@@ -45,49 +46,49 @@ const Header = () => {
                 <nav className="border-t-2 border-black py-4">
                     <ul className="flex flex-wrap justify-center items-center space-x-6 md:space-x-12 text-sm md:text-base font-newspaper">
                         <li>
-                            <a
+                            <Link
                                 href="#front-page"
                                 className="flex items-center space-x-1 hover:text-accent-red transition-colors duration-200 font-medium"
                             >
                                 <span className="text-lg">📰</span>
                                 <span>Front Page</span>
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a
+                            <Link
                                 href="#archives"
                                 className="flex items-center space-x-1 hover:text-accent-red transition-colors duration-200 font-medium"
                             >
                                 <span className="text-lg">📂</span>
                                 <span>Archives</span>
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a
-                                href="#essays"
+                            <Link
+                                href="/essays"
                                 className="flex items-center space-x-1 hover:text-accent-red transition-colors duration-200 font-medium"
                             >
                                 <span className="text-lg">🧠</span>
                                 <span>Essays</span>
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a
+                            <Link
                                 href="#investigations"
                                 className="flex items-center space-x-1 hover:text-accent-red transition-colors duration-200 font-medium"
                             >
                                 <span className="text-lg">🔍</span>
                                 <span>Tech Investigations</span>
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a
+                            <Link
                                 href="#about"
                                 className="flex items-center space-x-1 hover:text-accent-red transition-colors duration-200 font-medium"
                             >
                                 <span className="text-lg">👤</span>
                                 <span>About the Editor</span>
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </nav>

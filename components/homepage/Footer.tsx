@@ -120,25 +120,7 @@ const Footer = () => {
                             </ul>
                         </div>
 
-                        {/* Newsletter Signup */}
-                        <div>
-                            <h3 className="text-xl font-newspaper font-bold text-black mb-4 border-b-2 border-black pb-2">
-                                Stay Updated
-                            </h3>
-                            <p className="text-sm text-newspaper-gray font-newspaper mb-4">
-                                Get weekly insights on backend architecture and engineering leadership.
-                            </p>
-                            <div className="space-y-3">
-                                <input
-                                    type="email"
-                                    placeholder="Your email address"
-                                    className="w-full px-3 py-2 border-2 border-black text-black font-newspaper-sans text-sm focus:outline-none focus:ring-2 focus:ring-accent-red"
-                                />
-                                <button className="w-full bg-accent-red text-white px-4 py-2 text-sm font-newspaper-sans hover:bg-red-700 transition-colors duration-200 border-2 border-accent-red">
-                                    Subscribe
-                                </button>
-                            </div>
-                        </div>
+                       
                     </div>
                 </div>
 
