@@ -13,12 +13,6 @@ export async function getEssays() {
         });
 
         return response.items.map(item => {
-            // Handle tags properly - convert to string array and filter out nulls
-            const rawTags = item.fields.tags;
-            const tags = Array.isArray(rawTags)
-                ? rawTags.filter(tag => tag !== null && tag !== undefined).map(tag => String(tag))
-                : [];
-
             return {
                 id: String(item.fields.id),
                 title: item.fields.title,
