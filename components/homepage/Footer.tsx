@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Footer = () => {
     const currentYear = new Date().getFullYear();
 
@@ -43,38 +45,22 @@ const Footer = () => {
                                     Follow the Journal
                                 </h4>
                                 <div className="flex space-x-4">
-                                    <a
+                                    <Link
                                         href="https://github.com/markmumba"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="text-newspaper-gray hover:text-accent-red transition-colors duration-200"
                                     >
                                         <span className="text-lg">🐙</span>
-                                    </a>
-                                    <a
-                                        href="https://linkedin.com/in/markmumba"
+                                    </Link>
+                                    <Link
+                                        href="https://www.linkedin.com/in/markian-mumba-67231517a/"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="text-newspaper-gray hover:text-accent-red transition-colors duration-200"
                                     >
                                         <span className="text-lg">💼</span>
-                                    </a>
-                                    <a
-                                        href="https://twitter.com/markmumba"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-newspaper-gray hover:text-accent-red transition-colors duration-200"
-                                    >
-                                        <span className="text-lg">🐦</span>
-                                    </a>
-                                    <a
-                                        href="https://medium.com/@markmumba"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-newspaper-gray hover:text-accent-red transition-colors duration-200"
-                                    >
-                                        <span className="text-lg">📝</span>
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -120,7 +106,7 @@ const Footer = () => {
                             </ul>
                         </div>
 
-                       
+
                     </div>
                 </div>
 
@@ -135,7 +121,7 @@ const Footer = () => {
                         </p>
                         <div className="flex flex-col sm:flex-row gap-3 justify-center">
                             <a
-                                href="mailto:mark@example.com"
+                                href="mailto:mumbamarkian@gmail.com"
                                 className="inline-block bg-black text-white px-6 py-3 font-newspaper-sans hover:bg-gray-800 transition-colors duration-200 border-2 border-black"
                             >
                                 Start a Conversation
