@@ -18,7 +18,6 @@ const extractText = (richText: unknown): string => {
 export default async function EssayPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
     const essay = await getEssayById(id);
-    console.log(essay);
     if (!essay) {
         return (
             <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center p-4">

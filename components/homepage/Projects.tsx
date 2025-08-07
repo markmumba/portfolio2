@@ -49,7 +49,7 @@ const projects: Project[] = [
         title: 'Bag street Kenya',
         excerpt: "A platform for selling bags shoes and scarves.Gives a variety of goods to choose from and uses what app when you want to order. The seller uses contnentful CMS to manage the items listed.",
         category: 'Client Features',
-        tags: ['Next.js', 'Tailwind CSS', 'Contentful CMS', 'Responsive Design', 'E-commerce','Whatsapp Integration'],
+        tags: ['Next.js', 'Tailwind CSS', 'Contentful CMS', 'Responsive Design', 'E-commerce', 'Whatsapp Integration'],
         imageUrl: '/bsk.webp',
         githubUrl: 'https://github.com/markmumba/bag_street_kenya',
         liveUrl: 'https://bag-street-kenya-t4mz.vercel.app/'
@@ -136,14 +136,14 @@ const Projects = () => {
     const otherProjects = projects.filter(p => !p.featured);
 
     return (
-        <section id="archives" className="py-12 bg-background">
+        <section id="archives" className="py-8 bg-background">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
-                <div className="text-center mb-12">
-                    <h2 className="text-4xl md:text-5xl font-newspaper font-black text-black mb-4">
+                <div className="text-center mb-8">
+                    <h2 className="text-2xl md:text-3xl font-newspaper font-black text-black mb-4">
                         FEATURE ARTICLES
                     </h2>
-                    <p className="text-lg text-newspaper-gray font-newspaper italic">
+                    <p className="text-base text-newspaper-gray font-newspaper italic">
                         Recent projects and technical investigations from the field
                     </p>
                     <div className="w-24 h-1 bg-black mx-auto mt-4"></div>
@@ -151,9 +151,9 @@ const Projects = () => {
 
                 {/* Featured Project */}
                 {featuredProject && (
-                    <div className="mb-12">
-                        <div className="text-center mb-6">
-                            <h3 className="text-2xl font-newspaper font-bold text-black uppercase tracking-wider">
+                    <div className="mb-8">
+                        <div className="text-center mb-4">
+                            <h3 className="text-lg font-newspaper font-bold text-black uppercase tracking-wider">
                                 System Spotlight
                             </h3>
                         </div>
@@ -164,17 +164,17 @@ const Projects = () => {
                 )}
 
                 {/* Other Projects Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {otherProjects.map((project) => (
                         <ProjectCard key={project.id} project={project} />
                     ))}
                 </div>
 
                 {/* View All Projects Button */}
-                <div className="text-center mt-12">
+                <div className="text-center mt-8">
                     <a
                         href="#all-projects"
-                        className="inline-block bg-accent-red text-white px-8 py-3 text-lg font-newspaper-sans hover:bg-red-700 transition-colors duration-200 border-2 border-accent-red"
+                        className="inline-block bg-accent-red text-white px-6 py-2 text-base font-newspaper-sans hover:bg-red-700 transition-colors duration-200 border-2 border-accent-red"
                     >
                         View All Archives
                     </a>
