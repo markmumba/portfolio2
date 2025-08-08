@@ -70,7 +70,7 @@ const About = () => {
                             </h3>
                             <div className="prose prose-lg max-w-none">
                                 <p className="text-base text-black font-newspaper leading-relaxed mb-4">
-                                    My fascination with technology began with smartphones. I remember the day my dad brought home a Samsung Note 5—it wasn't just a phone to me, it was a marvel. I'd sit for hours in local movie shops with WiFi, watching videos on things like octa-core processors, hyperthreading, and multitasking. That curiosity opened the door to a world I couldn't stop exploring.
+                                    My fascination with technology began with smartphones. I remember the day my dad brought home a Samsung Note 5—it wasn&apos;t just a phone to me, it was a marvel. I&apos;d sit for hours in local movie shops with WiFi, watching videos on things like octa-core processors, hyperthreading, and multitasking. That curiosity opened the door to a world I couldn&apos;t stop exploring.
                                 </p>
                                 <p className="text-base text-black font-newspaper leading-relaxed mb-4">
                                     Years later, I chose to pursue Computer Science, and it was like discovering a new universe. Compiler construction, distributed systems, concurrency—each concept revealed just how deep the rabbit hole goes. I was hooked.
