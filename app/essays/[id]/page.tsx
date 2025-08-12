@@ -25,7 +25,7 @@ const formatDate = (dateString: string): string => {
             day: 'numeric'
         });
     } catch (error) {
-        return dateString;
+        return error as string;
     }
 };
 

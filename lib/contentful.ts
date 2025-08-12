@@ -7,7 +7,7 @@ const client = createClient({
 });
 
 // Helper function to extract image URL from Contentful asset
-function getImageUrl(blogImage: any): string {
+function getImageUrl(blogImage: Asset): string {
     try {
         // Check if blogImage is an asset with the expected structure
         if (blogImage && typeof blogImage === 'object' && 'fields' in blogImage) {
@@ -26,7 +26,7 @@ function getImageUrl(blogImage: any): string {
 }
 
 // Helper function to get image alt text
-function getImageAlt(blogImage: any, fallbackTitle: string): string {
+function getImageAlt(blogImage: Asset, fallbackTitle: string): string {
     try {
         if (blogImage && typeof blogImage === 'object' && 'fields' in blogImage) {
             const asset = blogImage as Asset;
@@ -35,7 +35,7 @@ function getImageAlt(blogImage: any, fallbackTitle: string): string {
         }
         return fallbackTitle;
     } catch (error) {
-        return fallbackTitle;
+        return error as string;
     }
 }
 
@@ -50,8 +50,8 @@ export async function getEssays() {
         return response.items.map(item => {
             return {
                 id: String(item.fields.id),
-                blogImage: getImageUrl(item.fields.blogImage),
-                blogImageAlt: getImageAlt(item.fields.blogImage, String(item.fields.title || '')),
+                blogImage: getImageUrl(item.fields.blogImage as Asset),
+                blogImageAlt: getImageAlt(item.fields.blogImage as Asset, String(item.fields.title || '')),
                 blogImageOwner: item.fields.blogImageOwner,
                 title: item.fields.title,
                 article: item.fields.article,
@@ -81,8 +81,8 @@ export async function getEssaysForHomepage() {
         return response.items.map(item => {
             return {
                 id: String(item.fields.id),
-                blogImage: getImageUrl(item.fields.blogImage),
-                blogImageAlt: getImageAlt(item.fields.blogImage, String(item.fields.title || '')),
+                blogImage: getImageUrl(item.fields.blogImage as Asset),
+                blogImageAlt: getImageAlt(item.fields.blogImage as Asset, String(item.fields.title || '')),
                 blogImageOwner: item.fields.blogImageOwner,
                 title: item.fields.title,
                 article: item.fields.article,
@@ -125,8 +125,8 @@ export async function getEssayById(id: string) {
             title: item.fields.title,
             article: item.fields.article,
             author: item.fields.author,
-            blogImage: getImageUrl(item.fields.blogImage),
-            blogImageAlt: getImageAlt(item.fields.blogImage, String(item.fields.title || '')),
+            blogImage: getImageUrl(item.fields.blogImage as Asset),
+            blogImageAlt: getImageAlt(item.fields.blogImage as Asset, String(item.fields.title || '')),
             blogImageOwner: item.fields.blogImageOwner,
             tags,
             publishDate: item.fields.publishDate,

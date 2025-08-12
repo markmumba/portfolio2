@@ -4,7 +4,7 @@ import { Essays } from "@/lib/definition";
 import Link from "next/link";
 
 // Helper function to get bento grid classes for essays
-function getEssayGridClasses(index: number, totalEssays: number): string {
+function getEssayGridClasses(index: number): string {
     // Create varied layouts for visual interest
     const patterns = [
         "col-span-1 md:col-span-2 row-span-1", // Wide card
@@ -73,7 +73,7 @@ export default async function EssaysPage() {
                     {essays.length > 0 ? (
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-min mb-12">
                             {essays.map((essay, index) => {
-                                const gridClasses = getEssayGridClasses(index, essays.length);
+                                const gridClasses = getEssayGridClasses(index);
                                 return (
                                     <div key={String(essay.id)} className={gridClasses}>
                                         <EssayCard essay={essay as Essays} />

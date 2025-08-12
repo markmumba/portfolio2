@@ -47,7 +47,7 @@ const formatDate = (dateString: string): string => {
             return years === 1 ? '1 YEAR AGO' : `${years} YEARS AGO`;
         }
     } catch (error) {
-        return 'NO DATE';
+        return error as string;
     }
 };
 
