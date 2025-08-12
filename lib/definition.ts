@@ -1,5 +1,6 @@
 export interface Essays {
     id: string;
+    blogImage: string;
     title: unknown; 
     article: unknown; 
     author: unknown; 
@@ -9,6 +10,8 @@ export interface Essays {
 }
 export interface Essay {
     id: string;
+    blogImage: string;
+    blogImageOwner:string;
     title: unknown; 
     article: unknown;
     author: unknown;

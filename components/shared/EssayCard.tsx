@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Essays } from "@/lib/definition";
+import Image from "next/image";
 
 const extractText = (richText: unknown): string => {
     if (typeof richText === 'string') {
@@ -19,48 +20,91 @@ const getFirstTwoSentences = (text: string): string => {
     const sentences = text.split(/[.!?]+/).filter(sentence => sentence.trim().length > 0);
 
     if (sentences.length >= 2) {
-        return sentences[0].trim() + '... ' + sentences[1].trim() + '...';
+        return sentences[0].trim() + '. ' + sentences[1].trim() + '.';
     } else if (sentences.length === 1) {
         return sentences[0].trim() + '.';
     }
 
-    return text;
+    return text.substring(0, 150) + '...';
 };
 
+const formatDate = (dateString: string): string => {
+    try {
+        const date = new Date(dateString);
+        const now = new Date();
+        const diffTime = Math.abs(now.getTime() - date.getTime());
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
+        if (diffDays === 1) {
+            return '1 DAY AGO';
+        } else if (diffDays < 30) {
+            return `${diffDays} DAYS AGO`;
+        } else if (diffDays < 365) {
+            const months = Math.floor(diffDays / 30);
+            return months === 1 ? '1 MONTH AGO' : `${months} MONTHS AGO`;
+        } else {
+            const years = Math.floor(diffDays / 365);
+            return years === 1 ? '1 YEAR AGO' : `${years} YEARS AGO`;
+        }
+    } catch (error) {
+        return 'NO DATE';
+    }
+};
 
-const EssayCard = async ({ essay }: { essay: Essays }) => {
+const EssayCard = ({ essay }: { essay: Essays }) => {
     const articleText = extractText(essay.article);
     const excerpt = getFirstTwoSentences(articleText);
+    const publishDate = extractText(essay.publishDate);
 
     return (
-        <article className="bg-newspaper-white border-2 border-black shadow-lg hover:shadow-xl transition-shadow duration-300">
+        <article className="bg-white hover:bg-gray-50 transition-colors duration-200">
+            {/* Essay Image */}
+            <div className="relative h-48 bg-gray-100 overflow-hidden">
+                {essay.blogImage ? (
+                    <>
+                        <Image
+                            src={essay.blogImage}
+                            alt={extractText(essay.title) || 'Essay image'}
+                            fill
+                            className="object-cover"
+                        />
+                        {/* Subtle overlay effect */}
+                        <div className="absolute inset-0 bg-black opacity-5 mix-blend-multiply"></div>
+                    </>
+                ) : (
+                    <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                        <span className="text-gray-400 text-sm">No image</span>
+                    </div>
+                )}
+            </div>
+
+            {/* Essay Content */}
             <div className="p-6">
-                <div className="flex items-center gap-2 mb-3">
-                    <span className="text-xs text-accent-red font-mono uppercase tracking-wider">
-                        {extractText(essay.category) || 'Uncategorized'}
-                    </span>
+                {/* Category */}
+                <div className="text-xs text-gray-600 font-inter mb-3">
+                    {extractText(essay.category) || 'ARTICLE'} • {formatDate(publishDate)}
                 </div>
 
-                <h3 className="text-xl md:text-2xl font-newspaper font-bold text-black mb-3 leading-tight">
+                {/* Title */}
+                <h3 className="text-xl font-bold text-black mb-3 leading-tight">
                     {extractText(essay.title) || 'Untitled'}
                 </h3>
 
-                <p className="text-newspaper-gray font-newspaper leading-relaxed mb-4">
+                {/* Excerpt */}
+                <p className="text-gray-700 font-inter leading-relaxed text-sm mb-4">
                     {excerpt}
                 </p>
 
-
-
-                <div className="flex items-center justify-between text-xs text-newspaper-gray font-mono border-t border-gray-300 pt-3">
-                    <span>{extractText(essay.publishDate) || 'No date'}</span>
-                    <span>{extractText(essay.author) || 'Anonymous'}</span>
+                {/* Author */}
+                <div className="text-xs text-gray-600 font-inter mb-4">
+                    By {extractText(essay.author) || 'Anonymous'}
                 </div>
 
-                <div className="mt-4">
+                {/* Read More Link */}
+                <div>
                     <Link
                         href={`/essays/${essay.id}`}
-                        className="inline-block border-2 border-black text-black px-4 py-2 text-sm font-newspaper-sans hover:bg-black hover:text-white transition-colors duration-200"
+                        className="text-xs text-gray-600 font-inter hover:text-black transition-colors duration-200"
                     >
                         Read Full Article →
                     </Link>
