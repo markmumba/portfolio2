@@ -9,8 +9,8 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-background newspaper-bg">
       <Header />
-      <Hero />
       <Essays />
+      <Hero />
       <Projects />
       <About />
       <Footer />

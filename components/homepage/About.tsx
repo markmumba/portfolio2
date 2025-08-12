@@ -45,12 +45,14 @@ const skills: Skill[] = [
 ];
 
 const funFacts = [
-    "I once spent 3 hours debugging only to realize I had a typo in a variable name",
-    "My favorite debugging method is explaining the problem to my rubber duck",
-    "I believe the best code is code that tells a story",
-    "I'm convinced that good naming is 80% of clean code",
-    "My IDE theme changes with my mood (currently using dark mode)",
-    "I think distributed systems are beautiful puzzles waiting to be solved"
+    "I think distributed systems are beautiful puzzles waiting to be solved",
+    "I enjoy diving into youtube videos where the person is talking about a niche topic ...'what is attention?? and then goes to explain something so indepth'",
+    "I love reading books on philosophy and life lessons",
+    "I genuinely believe music heals the soul",
+    "Working out is second nature to me",
+    "I enjoy film ... not movies Film!!!",
+    "Big tech nerd ...if money allowed i would have the latest macbook pro each year",
+
 ];
 
 const About = () => {
@@ -69,13 +71,13 @@ const About = () => {
 
                 {/* Personal Story */}
                 <div className="mb-16">
-                    <p className="text-lg text-gray-700 font-inter leading-relaxed mb-6">
+                    <p className=" text-gray-700 font-inter leading-relaxed mb-6">
                         My fascination with technology began with smartphones. I remember the day my dad brought home a Samsung Note 5—it wasn&apos;t just a phone to me, it was a marvel. I&apos;d sit for hours in local movie shops with WiFi, watching videos on things like octa-core processors, hyperthreading, and multitasking.
                     </p>
-                    <p className="text-lg text-gray-700 font-inter leading-relaxed mb-6">
+                    <p className="      text-gray-700 font-inter leading-relaxed mb-6">
                         Years later, I chose to pursue Computer Science, and it was like discovering a new universe. Compiler construction, distributed systems, concurrency—each concept revealed just how deep the rabbit hole goes. I was hooked.
                     </p>
-                    <p className="text-lg text-gray-700 font-inter leading-relaxed">
+                        <p className=" text-gray-700 font-inter leading-relaxed">
                         If there&apos;s one thing this journey has taught me, it&apos;s the importance of curiosity. Try, fail, learn, and try again. As Alan Watts said: &quot;The purpose of music is not the end of the composition... the whole point of the dancing is the dance.&quot; For me, software engineering is the same—the beauty is in the process.
                     </p>
                 </div>
@@ -194,7 +196,7 @@ const About = () => {
                             GitHub →
                         </Link>
                         <Link
-                            href="https://linkedin.com/in/markmumba"
+                            href="https://www.linkedin.com/in/markian-mumba-67231517a/"
                             target="_blank"
                             className="text-gray-600 font-inter hover:text-black transition-colors duration-200 text-sm"
                         >
