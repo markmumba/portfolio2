@@ -45,7 +45,6 @@ export async function getEssays() {
             content_type: 'articles',
             order: ['-fields.publishDate'],
         });
-        console.log(response.items);
 
         return response.items.map(item => {
             return {

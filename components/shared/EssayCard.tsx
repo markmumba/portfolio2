@@ -86,7 +86,7 @@ const EssayCard = ({ essay }: { essay: Essays }) => {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl font-bold text-black mb-3 leading-tight">
+                <h3 className="text-xl font-bold text-black mb-3 leading-tight font-heading">
                     {extractText(essay.title) || 'Untitled'}
                 </h3>
 

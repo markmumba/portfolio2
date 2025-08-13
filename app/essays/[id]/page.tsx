@@ -85,7 +85,7 @@ export default async function EssayPage({ params }: { params: Promise<{ id: stri
                             </span>
                         </div>
 
-                        <h1 className="text-2xl md:text-3xl font-bold text-black mb-4 leading-tight">
+                        <h1 className="text-2xl md:text-3xl font-bold text-black mb-4 leading-tight font-heading">
                             {extractText(essay.title)}
                         </h1>
 

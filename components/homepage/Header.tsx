@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 
 const Header = () => {
     const [currentDate, setCurrentDate] = useState('');
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     useEffect(() => {
         const updateDate = () => {
@@ -24,18 +25,26 @@ const Header = () => {
         return () => clearInterval(interval);
     }, []);
 
+    const toggleMobileMenu = () => {
+        setIsMobileMenuOpen(!isMobileMenuOpen);
+    };
+
+    const closeMobileMenu = () => {
+        setIsMobileMenuOpen(false);
+    };
+
     return (
         <header className="bg-white border-gray-200">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Main Navigation Bar */}
-                <div className="flex items-center py-2 border-b border-gray-200">
+                <div className="flex items-center justify-between py-2 border-b border-gray-200">
                     {/* Logo */}
                     <div className="bg-red-600 w-15 h-15 flex items-center justify-center">
                         <span className="text-white font-bold text-lg">M3</span>
                     </div>
 
-                    {/* Primary Navigation Links */}
-                    <nav className="flex items-center ml-4 ">
+                    {/* Desktop Navigation Links */}
+                    <nav className="hidden md:flex items-center ml-4">
                         <Link
                             href="#front-page"
                             className="text-black font-inter hover:text-gray-600 transition-colors duration-200"
@@ -98,21 +107,97 @@ const Header = () => {
                             </div>
                         </div>
                     </nav>
+
+                    {/* Mobile Hamburger Menu Button */}
+                    <button
+                        onClick={toggleMobileMenu}
+                        className="md:hidden flex items-center justify-center w-8 h-8 text-black hover:text-gray-600 transition-colors duration-200"
+                        aria-label="Toggle mobile menu"
+                    >
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            {isMobileMenuOpen ? (
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                            ) : (
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                            )}
+                        </svg>
+                    </button>
                 </div>
 
-                {/* Sub-Navigation/Tagline Section */}
-                <div className="flex items-center py-1 ml-6">
+                {/* Mobile Navigation Menu */}
+                {isMobileMenuOpen && (
+                    <div className="md:hidden border-b border-gray-200 bg-white">
+                        <nav className="py-4 space-y-4">
+                            <Link
+                                href="#front-page"
+                                onClick={closeMobileMenu}
+                                className="block text-black font-inter hover:text-gray-600 transition-colors duration-200"
+                            >
+                                Home
+                            </Link>
+                            <Link
+                                href="#about"
+                                onClick={closeMobileMenu}
+                                className="block text-black font-inter hover:text-gray-600 transition-colors duration-200"
+                            >
+                                About
+                            </Link>
+                            <Link
+                                href="/essays"
+                                onClick={closeMobileMenu}
+                                className="block text-black font-inter hover:text-gray-600 transition-colors duration-200"
+                            >
+                                Writing
+                            </Link>
+                            <Link
+                                href="#archives"
+                                onClick={closeMobileMenu}
+                                className="block text-black font-inter hover:text-gray-600 transition-colors duration-200"
+                            >
+                                Projects
+                            </Link>
+                            <Link
+                                href="mailto:mumbamarkian@gmail.com"
+                                onClick={closeMobileMenu}
+                                className="block text-black font-inter hover:text-gray-600 transition-colors duration-200"
+                            >
+                                Contact
+                            </Link>
+                            <div className="pt-2 border-t border-gray-200">
+                                <p className="text-sm text-gray-600 font-inter mb-2">Social Links</p>
+                                <Link
+                                    href="https://github.com/markmumba"
+                                    target="_blank"
+                                    onClick={closeMobileMenu}
+                                    className="block text-black font-inter hover:text-gray-600 transition-colors duration-200 mb-2"
+                                >
+                                    GitHub
+                                </Link>
+                                <Link
+                                    href="https://linkedin.com/in/markmumba"
+                                    target="_blank"
+                                    onClick={closeMobileMenu}
+                                    className="block text-black font-inter hover:text-gray-600 transition-colors duration-200"
+                                >
+                                    LinkedIn
+                                </Link>
+                            </div>
+                        </nav>
+                    </div>
+                )}
 
+                {/* Sub-Navigation/Tagline Section */}
+                <div className="flex items-center py-1 ml-2 md:ml-6">
                     {/* Sub-navigation content */}
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-xs flex-1">
-                        <p className="text-black italic mb-1 sm:mb-0">
+                        <p className="text-black italic mb-1 sm:mb-0 hidden sm:block">
                             The personal website of Mark Mumba
                         </p>
-                        <div className="flex items-center space-x-4">
-                            <span className="text-black font-inter">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 space-y-1 sm:space-y-0">
+                            <span className="text-black font-inter text-xs sm:text-xs">
                                 {currentDate}
                             </span>
-                            <span className="text-black font-inter">
+                            <span className="text-black font-inter text-xs sm:text-xs hidden lg:block">
                                 &quot;Engineer, learner, occasional philosopher&quot;
                             </span>
                         </div>
@@ -120,22 +205,21 @@ const Header = () => {
                 </div>
 
                 {/* Featured Section Label */}
-                <div className="border-t border-gray-200 ">
+                <div className="border-t border-gray-200">
                     <div className="flex items-center">
-                        <span className="text-red-600 font-bold mr-2">A1</span>
-                        <span className="text-black font-bold">|</span>
-                        <span className="text-black font-bold ml-2">FEATURED</span>
+                        <span className="text-red-600 font-bold mr-2 text-sm">A1</span>
+                        <span className="text-black font-bold text-sm">|</span>
+                        <span className="text-black font-bold ml-2 text-sm">FEATURED</span>
                     </div>
                     <div className="flex space-x-1 mt-1">
-                        <div className="w-8 h-0.5 bg-black"></div>
-                        <div className="w-8 h-0.5 bg-black"></div>
-                        <div className="w-12 h-0.5 bg-black"></div>
+                        <div className="w-6 sm:w-8 h-0.5 bg-black"></div>
+                        <div className="w-6 sm:w-8 h-0.5 bg-black"></div>
+                        <div className="w-8 sm:w-12 h-0.5 bg-black"></div>
                     </div>
                 </div>
             </div>
             <hr className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-black my-2'></hr>
             <hr className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-black my-2'></hr>
-
         </header>
     );
 };

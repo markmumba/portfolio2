@@ -20,7 +20,7 @@ const Essays = async () => {
         return (
             <section id="essays" className="py-16 bg-gray-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
+                    <h2 className="text-3xl md:text-4xl font-bold text-black mb-4 font-heading">
                         THOUGHTS & IDEAS
                     </h2>
                     <p className="text-lg text-gray-600 font-inter italic">
@@ -37,7 +37,7 @@ const Essays = async () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
                 <div className="text-center mb-12">
-                    <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
+                    <h2 className="text-3xl md:text-4xl font-bold text-black mb-4 font-heading">
                         THOUGHTS & IDEAS
                     </h2>
                     <p className="text-lg text-gray-600 font-inter italic">
@@ -70,7 +70,7 @@ const Essays = async () => {
                             View All Essays →
                         </Link>
                         <span className="text-gray-300">•</span>
-                     
+
                     </div>
                 </div>
             </div>

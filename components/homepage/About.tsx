@@ -61,7 +61,7 @@ const About = () => {
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
                 <div className="text-center mb-12">
-                    <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
+                    <h2 className="text-3xl md:text-4xl font-bold text-black mb-4 font-heading">
                         My Story
                     </h2>
                     <p className="text-lg text-gray-600 font-inter">
@@ -115,7 +115,7 @@ const About = () => {
 
                 {/* Timeline */}
                 <div className="mb-16">
-                    <h3 className="text-2xl font-bold text-black mb-8">My Journey</h3>
+                    <h3 className="text-2xl font-bold text-black mb-8 font-heading">My Journey</h3>
                     <div className="space-y-8">
                         {timelineEvents.map((event, index) => (
                             <div key={index} className="flex gap-6">
@@ -125,7 +125,7 @@ const About = () => {
                                     </div>
                                 </div>
                                 <div className="flex-1">
-                                    <h4 className="text-lg font-bold text-black mb-2">
+                                    <h4 className="text-lg font-bold text-black mb-2 font-heading">
                                         {event.title}
                                     </h4>
                                     <p className="text-gray-700 font-inter">
@@ -139,7 +139,7 @@ const About = () => {
 
                 {/* Skills */}
                 <div className="mb-16">
-                    <h3 className="text-2xl font-bold text-black mb-8">My Toolkit</h3>
+                    <h3 className="text-2xl font-bold text-black mb-8 font-heading">My Toolkit</h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {skills.map((skill, index) => (
                             <div key={index}>

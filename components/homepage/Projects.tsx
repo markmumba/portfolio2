@@ -149,7 +149,7 @@ const Projects = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
                 <div className="text-center mb-12">
-                    <h2 className="text-2xl md:text-3xl font-bold text-black mb-4">
+                    <h2 className="text-2xl md:text-3xl font-bold text-black mb-4 font-heading">
                         STORIES FROM THE FIELD
                     </h2>
                     <p className="text-base text-gray-600 font-inter italic">
