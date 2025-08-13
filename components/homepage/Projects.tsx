@@ -145,7 +145,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
 const Projects = () => {
     return (
-        <section id="archives" className="py-12 bg-white border-b-4 border-black">
+        <section id="archives" className="py-12  border-b-4 border-black">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
                 <div className="text-center mb-12">
@@ -166,7 +166,7 @@ const Projects = () => {
                 </div>
 
                 {/* Editorial Note */}
-                <div className="bg-gray-100 border-2 border-gray-300 p-6 mb-8 shadow-lg rounded-lg">
+                <div className=" p-6 mb-8 shadow-lg ">
                     <div className="flex items-start gap-4">
                         <div className="text-3xl">📰</div>
                         <div>

@@ -34,10 +34,10 @@ const Header = () => {
     };
 
     return (
-        <header className="bg-white border-gray-200">
+        <header className=" border-black">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Main Navigation Bar */}
-                <div className="flex items-center justify-between py-2 border-b border-gray-200">
+                <div className="flex items-center justify-between py-2 border-b border-black">
                     {/* Logo */}
                     <div className="bg-red-600 w-15 h-15 flex items-center justify-center">
                         <span className="text-white font-bold text-lg">M3</span>
@@ -51,35 +51,35 @@ const Header = () => {
                         >
                             Home
                         </Link>
-                        <div className="w-px h-4 bg-gray-300 mx-4"></div>
+                        <div className="w-px h-4 bg-black mx-4"></div>
                         <Link
                             href="#about"
                             className="text-black font-inter hover:text-gray-600 transition-colors duration-200"
                         >
                             About
                         </Link>
-                        <div className="w-px h-4 bg-gray-300 mx-4"></div>
+                        <div className="w-px h-4 bg-black mx-4"></div>
                         <Link
                             href="/essays"
                             className="text-black font-inter hover:text-gray-600 transition-colors duration-200"
                         >
                             Writing
                         </Link>
-                        <div className="w-px h-4 bg-gray-300 mx-4"></div>
+                        <div className="w-px h-4 bg-black mx-4"></div>
                         <Link
                             href="#archives"
                             className="text-black font-inter hover:text-gray-600 transition-colors duration-200"
                         >
                             Projects
                         </Link>
-                        <div className="w-px h-4 bg-gray-300 mx-4"></div>
+                        <div className="w-px h-4 bg-black mx-4"></div>
                         <Link
                             href="mailto:mumbamarkian@gmail.com"
                             className="text-black font-inter hover:text-gray-600 transition-colors duration-200"
                         >
                             Contact
                         </Link>
-                        <div className="w-px h-4 bg-gray-300 mx-4"></div>
+                            <div className="w-px h-4 bg-black mx-4"></div>
                         <div className="relative group">
                             <button className="text-black font-inter hover:text-gray-600 transition-colors duration-200 flex items-center">
                                 More
@@ -87,7 +87,7 @@ const Header = () => {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                 </svg>
                             </button>
-                            <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10">
+                                <div className="absolute right-0 mt-2 w-48 bg-white border border-black rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10">
                                 <div className="py-1">
                                     <Link
                                         href="https://github.com/markmumba"
@@ -126,7 +126,7 @@ const Header = () => {
 
                 {/* Mobile Navigation Menu */}
                 {isMobileMenuOpen && (
-                    <div className="md:hidden border-b border-gray-200 bg-white">
+                    <div className="md:hidden border-b border-black bg-white">
                         <nav className="py-4 space-y-4">
                             <Link
                                 href="#front-page"
@@ -205,7 +205,7 @@ const Header = () => {
                 </div>
 
                 {/* Featured Section Label */}
-                <div className="border-t border-gray-200">
+                <div className="border-t border-black">
                     <div className="flex items-center">
                         <span className="text-red-600 font-bold mr-2 text-sm">A1</span>
                         <span className="text-black font-bold text-sm">|</span>

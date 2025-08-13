@@ -4,7 +4,7 @@ const Footer = () => {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="bg-newspaper-white border-t-4 border-black">
+        <footer className="bg-white border-t-4 border-black">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Main Footer Content */}
                 <div className="py-10">
@@ -12,7 +12,7 @@ const Footer = () => {
 
                         {/* Contact Information */}
                         <div className="md:col-span-2">
-                            <h3 className="text-xl font-newspaper font-bold text-black mb-4 border-b-2 border-black pb-2">
+                            <h3 className="text-xl  font-bold text-black mb-4 border-b-2 border-black pb-2">
                                 Contact the Editor
                             </h3>
                             <div className="space-y-3">
@@ -20,20 +20,20 @@ const Footer = () => {
                                     <span className="text-lg">📧</span>
                                     <a
                                         href="mailto:mark@example.com"
-                                        className="text-newspaper-gray font-newspaper hover:text-accent-red transition-colors duration-200"
+                                        className="text-newspaper-gray  hover:text-accent-red transition-colors duration-200"
                                     >
                                         mark@example.com
                                     </a>
                                 </div>
                                 <div className="flex items-center space-x-3">
                                     <span className="text-lg">📍</span>
-                                    <span className="text-newspaper-gray font-newspaper">
+                                    <span className="text-newspaper-gray ">
                                         Nairobi, Kenya
                                     </span>
                                 </div>
                                 <div className="flex items-center space-x-3">
                                     <span className="text-lg">🌐</span>
-                                    <span className="text-newspaper-gray font-newspaper">
+                                    <span className="text-newspaper-gray ">
                                         Available for remote work worldwide
                                     </span>
                                 </div>
@@ -67,14 +67,14 @@ const Footer = () => {
 
                         {/* Quick Links */}
                         <div>
-                            <h3 className="text-xl font-newspaper font-bold text-black mb-4 border-b-2 border-black pb-2">
+                            <h3 className="text-xl  font-bold text-black mb-4 border-b-2 border-black pb-2">
                                 Quick Links
                             </h3>
                             <ul className="space-y-2">
                                 <li>
                                     <a
                                         href="#front-page"
-                                        className="text-newspaper-gray font-newspaper hover:text-accent-red transition-colors duration-200"
+                                        className="text-newspaper-gray  hover:text-accent-red transition-colors duration-200"
                                     >
                                         Front Page
                                     </a>
@@ -82,7 +82,7 @@ const Footer = () => {
                                 <li>
                                     <a
                                         href="#archives"
-                                        className="text-newspaper-gray font-newspaper hover:text-accent-red transition-colors duration-200"
+                                        className="text-newspaper-gray  hover:text-accent-red transition-colors duration-200"
                                     >
                                         Archives
                                     </a>
@@ -90,7 +90,7 @@ const Footer = () => {
                                 <li>
                                     <a
                                         href="#essays"
-                                        className="text-newspaper-gray font-newspaper hover:text-accent-red transition-colors duration-200"
+                                        className="text-newspaper-gray  hover:text-accent-red transition-colors duration-200"
                                     >
                                         Essays
                                     </a>
@@ -98,7 +98,7 @@ const Footer = () => {
                                 <li>
                                     <a
                                         href="#about"
-                                        className="text-newspaper-gray font-newspaper hover:text-accent-red transition-colors duration-200"
+                                        className="text-newspaper-gray  hover:text-accent-red transition-colors duration-200"
                                     >
                                         About the Editor
                                     </a>
@@ -113,22 +113,22 @@ const Footer = () => {
                 {/* Final Call to Action */}
                 <div className="border-t-2 border-gray-300 py-6">
                     <div className="text-center">
-                        <h3 className="text-lg font-newspaper font-bold text-black mb-3">
+                        <h3 className="text-lg  font-bold text-black mb-3">
                             Ready to Build Something Amazing?
                         </h3>
-                        <p className="text-newspaper-gray font-newspaper mb-4">
+                        <p className="text-newspaper-gray  mb-4">
                             I&apos;m always interested in hearing about new opportunities and interesting projects.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-3 justify-center">
                             <a
                                 href="mailto:mumbamarkian@gmail.com"
-                                className="inline-block bg-black text-white px-6 py-3 font-newspaper-sans hover:bg-gray-800 transition-colors duration-200 border-2 border-black"
+                                className="inline-block bg-black text-white px-6 py-3  hover:bg-gray-800 transition-colors duration-200 border-2 border-black"
                             >
                                 Start a Conversation
                             </a>
                             <a
                                 href="/resume.pdf"
-                                className="inline-block border-2 border-black text-black px-6 py-3 font-newspaper-sans hover:bg-black hover:text-white transition-colors duration-200"
+                                className="inline-block border-2 border-black text-black px-6 py-3  hover:bg-black hover:text-white transition-colors duration-200"
                             >
                                 Download Résumé
                             </a>

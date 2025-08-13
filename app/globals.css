@@ -1,12 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fdfdfd;
+  --background: #fef9ed;
   --foreground: #171717;
   --accent-red: #dc2626;
   --accent-blue: #2563eb;
   --newspaper-white: #ffffff;
   --newspaper-gray: #6b7280;
+  --card-background: #F3E8D9;
 }
 
 @theme inline {
@@ -16,6 +17,7 @@
   --color-accent-blue: var(--accent-blue);
   --color-newspaper-white: var(--newspaper-white);
   --color-newspaper-gray: var(--newspaper-gray);
+  --color-card-background: var(--card-background);
   --font-sans: "Inter", system-ui, sans-serif;
   --font-mono: "Courier New", monospace;
   --font-fraunces: "Fraunces", serif;

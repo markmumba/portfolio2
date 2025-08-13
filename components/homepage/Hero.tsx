@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const Hero = () => {
     return (
-        <section id="front-page" className="py-8 md:py-16 bg-white">
+        <section id="front-page" className="py-8 md:py-16 ">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
 
@@ -23,7 +23,7 @@ const Hero = () => {
                             This is where I share my learnings, explore ideas, and occasionally ramble about the intersection of technology and life.
                         </p>
 
-                        <div className="bg-gray-100 p-3 sm:p-4 border-l-4 border-black mb-6 sm:mb-8">
+                        <div className="bg-white p-3 sm:p-4 border-l-4 border-black mb-6 sm:mb-8">
                             <h3 className="text-sm font-bold text-black mb-2">Currently:</h3>
                             <p className="text-xs sm:text-sm text-gray-700 font-inter">
                                 Exploring distributed systems, reading &quot;Designing Data-Intensive Applications&quot;,
