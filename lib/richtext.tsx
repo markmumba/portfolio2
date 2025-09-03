@@ -10,7 +10,7 @@ const renderOptions = {
     [MARKS.ITALIC]: (text: React.ReactNode) => <em className="italic text-gray-600">{text}</em>,
     [MARKS.UNDERLINE]: (text: React.ReactNode) => <u className="underline">{text}</u>,
     [MARKS.CODE]: (text: React.ReactNode) => (
-      <code className="bg-gray-100 text-gray-800 px-2 py-1 text-sm font-mono border border-gray-300">
+      <code className="bg-gray-200 text-black px-2 py-1 text-sm font-mono rounded border border-gray-300">
         {text}
       </code>
     ),
@@ -19,9 +19,29 @@ const renderOptions = {
     [MARKS.SUBSCRIPT]: (text: React.ReactNode) => <sub className="text-xs">{text}</sub>,
   },
   renderNode: {
-    [BLOCKS.PARAGRAPH]: (node: Block | Inline, children: React.ReactNode) => (
-      <p className="mb-4 leading-relaxed text-gray-800 font-inter">{children}</p>
-    ),
+    [BLOCKS.PARAGRAPH]: (node: Block | Inline, children: React.ReactNode) => {
+      // Check if this paragraph contains only code (for code blocks)
+      const isCodeBlock = node.content?.every((child: any) => {
+        return child.nodeType === 'text' && child.marks?.some((mark: any) => mark.type === 'code');
+      });
+
+      if (isCodeBlock) {
+        // Extract the raw text content for code blocks
+        const codeContent = node.content?.map((child: any) => child.value).join('') || '';
+        return (
+          <div className="mb-6 rounded-lg overflow-hidden border border-gray-300">
+            <div className="bg-gray-300 px-4 py-2 text-xs text-gray-700 border-b border-gray-300">
+              Code
+            </div>
+            <pre className="bg-gray-200 text-black p-4 overflow-x-auto text-sm font-mono leading-relaxed">
+              <code>{codeContent}</code>
+            </pre>
+          </div>
+        );
+      }
+
+      return <p className="mb-4 leading-relaxed text-gray-800 font-inter">{children}</p>;
+    },
     [BLOCKS.HEADING_1]: (node: Block | Inline, children: React.ReactNode) => (
       <h1 className="text-2xl font-bold text-black mb-4 mt-6 border-b border-gray-300 pb-2">
         {children}
