@@ -4,6 +4,19 @@ import { BLOCKS, MARKS, INLINES, Document, Block, Inline } from '@contentful/ric
 import Image from 'next/image';
 import React from 'react'; // Added missing import for React
 
+// Define types for rich text content
+interface TextNode {
+  nodeType: 'text';
+  value: string;
+  marks?: Array<{
+    type: string;
+  }>;
+}
+
+interface ParagraphNode {
+  content?: TextNode[];
+}
+
 const renderOptions = {
   renderMark: {
     [MARKS.BOLD]: (text: React.ReactNode) => <strong className="font-bold text-black">{text}</strong>,
@@ -21,13 +34,14 @@ const renderOptions = {
   renderNode: {
     [BLOCKS.PARAGRAPH]: (node: Block | Inline, children: React.ReactNode) => {
       // Check if this paragraph contains only code (for code blocks)
-      const isCodeBlock = node.content?.every((child: any) => {
-        return child.nodeType === 'text' && child.marks?.some((mark: any) => mark.type === 'code');
+      const paragraphNode = node as ParagraphNode;
+      const isCodeBlock = paragraphNode.content?.every((child: TextNode) => {
+        return child.nodeType === 'text' && child.marks?.some((mark) => mark.type === 'code');
       });
 
       if (isCodeBlock) {
         // Extract the raw text content for code blocks
-        const codeContent = node.content?.map((child: any) => child.value).join('') || '';
+        const codeContent = paragraphNode.content?.map((child: TextNode) => child.value).join('') || '';
         return (
           <div className="mb-6 rounded-lg overflow-hidden border border-gray-300">
             <div className="bg-gray-300 px-4 py-2 text-xs text-gray-700 border-b border-gray-300">
