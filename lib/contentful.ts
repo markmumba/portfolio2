@@ -14,8 +14,11 @@ function getImageUrl(blogImage: Asset): string {
             const asset = blogImage as Asset;
             if (asset.fields?.file && typeof asset.fields.file === 'object' && 'url' in asset.fields.file) {
                 // Add https: protocol if missing
-                const url = String(asset.fields.file.url);
-                return url.startsWith('//') ? `https:${url}` : url;
+                let url = String(asset.fields.file.url);
+                url = url.startsWith('//') ? `https:${url}` : url;
+
+                // Return original URL
+                return url;
             }
         }
         return '/default-image.webp'; // Fallback image
