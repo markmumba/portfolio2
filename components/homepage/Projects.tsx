@@ -61,7 +61,7 @@ const projects: Project[] = [
         tags: ['Next.js', 'Tailwind CSS', 'Contentful CMS', 'Responsive Design', 'E-commerce', 'WhatsApp Integration'],
         imageUrl: '/bsk.webp',
         githubUrl: 'https://github.com/markmumba/bag_street_kenya',
-        liveUrl: 'https://bag-street-kenya-t4mz.vercel.app/',
+        liveUrl: 'https://bagstreetke.co.ke/',
         publishDate: '4 MONTHS AGO',
         gridSize: 'small'
     }
@@ -70,7 +70,7 @@ const projects: Project[] = [
 const getGridClasses = (gridSize: string) => {
     switch (gridSize) {
         case 'large':
-            return 'col-span-1 md:col-span-2 row-span-1 md:row-span-1';
+            return 'col-span-1 md:col-span-2 row-span-1';
         case 'medium':
             return 'col-span-1 row-span-1';
         case 'small':
@@ -92,7 +92,12 @@ const ProjectCard = ({ project }: { project: Project }) => {
                     src={project.imageUrl}
                     alt={`Illustration for ${project.title}`}
                     fill
-                    className="object-cover "
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover transition-opacity duration-300"
+                    priority={project.featured}
+                    quality={90}
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R+Rj5m4LbvK5O4qNnK2bQQM4EEAACH5BAkKAAAALAAAAAABAAEAAAICTAEAOw=="
                 />
                 {/* Grainy overlay effect */}
                 <div className="absolute inset-0 bg-black opacity-5 mix-blend-multiply"></div>
