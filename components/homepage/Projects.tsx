@@ -18,19 +18,31 @@ interface Project {
 const projects: Project[] = [
     {
         id: '1',
+        title: 'FolioCuts',
+        excerpt: 'A digital barbershop management platform for Kenyan barbershops that replaces paper ledgers with intelligent commission tracking, M-Pesa payment integration (STK push, automated receipts), and automated loyalty rewards. Features live analytics, staff performance dashboards, and 3-minute guided onboarding.',
+        category: 'PROJECT',
+        tags: ['Java', 'Spring Boot', 'Next.js', 'PostgreSQL', 'M-Pesa', 'SaaS'],
+        imageUrl: '/folio.png',
+        githubUrl: 'https://github.com/markmumba/foliocuts',
+        liveUrl: 'https://folio.blazor-movies.online/',
+        featured: true,
+        publishDate: '1 MONTH AGO',
+        gridSize: 'large'
+    },
+    {
+        id: '2',
         title: 'Garbage Collection System',
         excerpt: 'A fullstack waste management platform that connects households with local collectors, tracks pickups in real time, and automates payments and payouts — all built with Next.js, Spring Boot, and PostgreSQL.',
         category: 'PROJECT',
         tags: ['Java', 'Spring Boot', 'Next.js', 'PostgreSQL', 'Geolocation', 'WebSocket'],
         imageUrl: '/bolla.webp',
         githubUrl: 'https://github.com/markmumba/bolloapp-frontend',
-        liveUrl: 'https://app.blazor-movies.online/',
-        featured: true,
+        liveUrl: 'https://bolla.blazor-movies.online/',
         publishDate: '2 MONTHS AGO',
         gridSize: 'large'
     },
     {
-        id: '2',
+        id: '3',
         title: 'Rentitup',
         excerpt: "A rental platform that connects machinery owners with people who need them — from small contractors to everyday homeowners. Built as a microservices system with Spring Boot and REST APIs, RentItUp handles listings, bookings, payments, and secure communication between users.",
         category: 'PROJECT',
@@ -42,7 +54,7 @@ const projects: Project[] = [
         gridSize: 'medium'
     },
     {
-        id: '3',
+        id: '4',
         title: 'ESTC Website',
         excerpt: "A corporate website for ESTC, a professional training organization offering custom programs in Leadership, ICT, HR, and more. Built with Next.js and Tailwind CSS, the site communicates services clearly, showcases key programs, and supports client engagement through a responsive, modern UI.",
         category: 'PROJECT',
@@ -54,7 +66,7 @@ const projects: Project[] = [
         gridSize: 'medium'
     },
     {
-        id: '4',
+        id: '5',
         title: 'Bag street Kenya',
         excerpt: "A platform for selling bags, shoes and scarves. Gives a variety of goods to choose from and uses WhatsApp when you want to order. The seller uses Contentful CMS to manage the items listed.",
         category: 'PROJECT',
