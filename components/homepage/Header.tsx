@@ -74,12 +74,19 @@ const Header = () => {
                         </Link>
                         <div className="w-px h-4 bg-black mx-4"></div>
                         <Link
+                            href="/resume"
+                            className="text-black font-inter hover:text-gray-600 transition-colors duration-200"
+                        >
+                            Resume
+                        </Link>
+                        <div className="w-px h-4 bg-black mx-4"></div>
+                        <Link
                             href="mailto:mumbamarkian@gmail.com"
                             className="text-black font-inter hover:text-gray-600 transition-colors duration-200"
                         >
                             Contact
                         </Link>
-                            <div className="w-px h-4 bg-black mx-4"></div>
+                        <div className="w-px h-4 bg-black mx-4"></div>
                         <div className="relative group">
                             <button className="text-black font-inter hover:text-gray-600 transition-colors duration-200 flex items-center">
                                 More
@@ -87,7 +94,7 @@ const Header = () => {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                 </svg>
                             </button>
-                                <div className="absolute right-0 mt-2 w-48 bg-white border border-black rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10">
+                            <div className="absolute right-0 mt-2 w-48 bg-white border border-black rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10">
                                 <div className="py-1">
                                     <Link
                                         href="https://github.com/markmumba"
@@ -155,6 +162,13 @@ const Header = () => {
                                 className="block text-black font-inter hover:text-gray-600 transition-colors duration-200"
                             >
                                 Projects
+                            </Link>
+                            <Link
+                                href="/resume"
+                                onClick={closeMobileMenu}
+                                className="block text-black font-inter hover:text-gray-600 transition-colors duration-200"
+                            >
+                                Resume
                             </Link>
                             <Link
                                 href="mailto:mumbamarkian@gmail.com"

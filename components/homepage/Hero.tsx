@@ -39,6 +39,12 @@ const Hero = () => {
                                 Read My Writing →
                             </Link>
                             <Link
+                                href="/resume"
+                                className="w-full sm:w-auto text-center border border-black text-black px-4 sm:px-6 py-3 font-inter hover:bg-gray-100 transition-colors duration-200 text-sm"
+                            >
+                                View Resume →
+                            </Link>
+                            <Link
                                 href="#archives"
                                 className="w-full sm:w-auto text-center sm:text-left text-gray-600 font-inter hover:text-black transition-colors duration-200 text-sm"
                             >
