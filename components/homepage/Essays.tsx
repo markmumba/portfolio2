@@ -2,13 +2,12 @@ import { getEssaysForHomepage } from "@/lib/contentful";
 import { EssayCard } from "../shared/EssayCard";
 import Link from "next/link";
 
-// Helper function to get bento grid classes based on index
 function getBentoGridClasses(index: number): string {
     const patterns = [
-        "col-span-1 md:col-span-2 row-span-1 md:row-span-2", // Large card (spans 2 cols, 2 rows on md+)
-        "col-span-1 row-span-1", // Regular card
-        "col-span-1 row-span-1", // Regular card  
-        "col-span-1 md:col-span-3 lg:col-span-4 row-span-1", // Wide card (spans full width)
+        "col-span-1 md:col-span-2 row-span-1 md:row-span-2", 
+        "col-span-1 row-span-1", 
+        "col-span-1 row-span-1", 
+        "col-span-1 md:col-span-3 lg:col-span-4 row-span-1",
     ];
     return patterns[index % patterns.length];
 }
@@ -35,7 +34,6 @@ const Essays = async () => {
     return (
         <section id="essays" className="py-16 bg-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Header */}
                 <div className="text-center mb-12">
                     <h2 className="text-3xl md:text-4xl font-bold text-black mb-4 font-heading">
                         THOUGHTS & IDEAS
@@ -47,7 +45,6 @@ const Essays = async () => {
                 </div>
 
 
-                {/* Bento Grid for Essays */}
                 <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-min mb-12">
                     {essays.map((essay, index) => {
                         const gridClasses = getBentoGridClasses(index);
@@ -60,7 +57,6 @@ const Essays = async () => {
                     })}
                 </div>
 
-                {/* Call to Action - Redesigned */}
                 <div className="text-center mt-12">
                     <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
                         <Link
