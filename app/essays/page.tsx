@@ -52,7 +52,7 @@ export default async function EssaysPage() {
             </div>
 
             {/* Main Content */}
-            <main className="py-16">
+            <main id="main" className="py-16">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Editorial Note */}
                     <div className="bg-white p-8 border-l-4 border-black shadow-lg mb-12">

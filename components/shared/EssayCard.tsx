@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Essays } from "@/lib/definition";
 import Image from "next/image";
+import { optimizeContentfulImageUrl } from "@/lib/contentful-image";
 
 const extractText = (richText: unknown): string => {
     if (typeof richText === 'string') {
@@ -25,7 +26,7 @@ const getFirstTwoSentences = (text: string): string => {
         return sentences[0].trim() + '.';
     }
 
-    return text.substring(0, 150) + '...';
+    return text.substring(0, 150) + '…';
 };
 
 const formatDate = (dateString: string): string => {
@@ -55,6 +56,7 @@ const EssayCard = ({ essay }: { essay: Essays }) => {
     const articleText = extractText(essay.article);
     const excerpt = getFirstTwoSentences(articleText);
     const publishDate = extractText(essay.publishDate);
+    const imageUrl = optimizeContentfulImageUrl(essay.blogImage, { width: 900 });
 
     return (
         <article className="bg-white hover:bg-gray-50 transition-colors duration-200">
@@ -63,9 +65,10 @@ const EssayCard = ({ essay }: { essay: Essays }) => {
                 {essay.blogImage ? (
                     <>
                         <Image
-                            src={essay.blogImage}
+                            src={imageUrl}
                             alt={extractText(essay.title) || 'Essay image'}
                             fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             className="object-cover"
                         />
                         {/* Subtle overlay effect */}

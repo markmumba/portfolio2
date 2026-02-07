@@ -7,7 +7,7 @@ import Footer from "../components/homepage/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background newspaper-bg">
+    <main id="main" className="min-h-screen bg-background newspaper-bg">
       <Header />
       <Hero />
       <Essays />

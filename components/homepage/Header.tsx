@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 const Header = () => {
     const [currentDate, setCurrentDate] = useState('');
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isMoreOpen, setIsMoreOpen] = useState(false);
 
     useEffect(() => {
         const updateDate = () => {
@@ -26,11 +27,19 @@ const Header = () => {
     }, []);
 
     const toggleMobileMenu = () => {
-        setIsMobileMenuOpen(!isMobileMenuOpen);
+        setIsMobileMenuOpen((open) => !open);
     };
 
     const closeMobileMenu = () => {
         setIsMobileMenuOpen(false);
+    };
+
+    const toggleMoreMenu = () => {
+        setIsMoreOpen((open) => !open);
+    };
+
+    const closeMoreMenu = () => {
+        setIsMoreOpen(false);
     };
 
     return (
@@ -87,18 +96,42 @@ const Header = () => {
                             Contact
                         </Link>
                         <div className="w-px h-4 bg-black mx-4"></div>
-                        <div className="relative group">
-                            <button className="text-black font-inter hover:text-gray-600 transition-colors duration-200 flex items-center">
+                        <div
+                            className="relative"
+                            onBlur={(event) => {
+                                if (!event.currentTarget.contains(event.relatedTarget as Node)) {
+                                    closeMoreMenu();
+                                }
+                            }}
+                        >
+                            <button
+                                type="button"
+                                onClick={toggleMoreMenu}
+                                onKeyDown={(event) => {
+                                    if (event.key === 'Escape') {
+                                        closeMoreMenu();
+                                    }
+                                }}
+                                aria-haspopup="true"
+                                aria-expanded={isMoreOpen}
+                                aria-controls="more-menu"
+                                className="text-black font-inter hover:text-gray-600 transition-colors duration-200 flex items-center"
+                            >
                                 More
                                 <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                 </svg>
                             </button>
-                            <div className="absolute right-0 mt-2 w-48 bg-white border border-black rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10">
+                            {isMoreOpen && (
+                                <div
+                                    id="more-menu"
+                                    className="absolute right-0 mt-2 w-48 bg-white border border-black rounded-md shadow-lg transition-opacity duration-200 z-10"
+                                >
                                 <div className="py-1">
                                     <Link
                                         href="https://github.com/markmumba"
                                         target="_blank"
+                                        onClick={closeMoreMenu}
                                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                     >
                                         GitHub
@@ -106,12 +139,14 @@ const Header = () => {
                                     <Link
                                         href="https://linkedin.com/in/markmumba"
                                         target="_blank"
+                                        onClick={closeMoreMenu}
                                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                     >
                                         LinkedIn
                                     </Link>
                                 </div>
-                            </div>
+                                </div>
+                            )}
                         </div>
                     </nav>
 

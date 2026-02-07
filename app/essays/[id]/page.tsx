@@ -3,6 +3,7 @@ import RichTextRenderer from "@/lib/richtext";
 import { Document } from "@contentful/rich-text-types";
 import Link from "next/link";
 import Image from "next/image";
+import { optimizeContentfulImageUrl } from "@/lib/contentful-image";
 
 const extractText = (richText: unknown): string => {
     if (typeof richText === 'string') {
@@ -32,6 +33,9 @@ const formatDate = (dateString: string): string => {
 export default async function EssayPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
     const essay = await getEssayById(id);
+    const imageUrl = essay?.blogImage
+        ? optimizeContentfulImageUrl(essay.blogImage, { width: 1400 })
+        : '';
 
     if (!essay) {
         return (
@@ -58,7 +62,7 @@ export default async function EssayPage({ params }: { params: Promise<{ id: stri
             {/* Navigation */}
             <nav className="bg-white border-b border-gray-200 py-4">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex items-center text-sm text-gray-600 font-inter">
+                <div className="flex items-center text-sm text-gray-600 font-inter min-w-0">
                         <Link href="/" className="hover:text-black transition-colors">
                             Home
                         </Link>
@@ -75,7 +79,7 @@ export default async function EssayPage({ params }: { params: Promise<{ id: stri
             </nav>
 
             {/* Article Content */}
-            <main className="py-16">
+            <main id="main" className="py-16">
                 <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Header */}
                     <header className="mb-10">
@@ -114,9 +118,10 @@ export default async function EssayPage({ params }: { params: Promise<{ id: stri
                         <div className="mb-10">
                             <div className="relative aspect-[16/9] bg-gray-100 overflow-hidden">
                                 <Image
-                                    src={essay.blogImage}
+                                    src={imageUrl}
                                     alt={essay.blogImageAlt || extractText(essay.title)}
                                     fill
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px"
                                     className="object-cover"
                                 />
                             </div>

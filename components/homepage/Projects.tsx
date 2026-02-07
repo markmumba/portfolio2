@@ -129,7 +129,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
                 {/* Excerpt */}
                 <p className={`text-gray-700 font-inter leading-relaxed mb-4 ${isLarge ? 'text-sm md:text-base' : 'text-sm'}`}>
-                    {isLarge ? project.excerpt : project.excerpt.substring(0, 120) + '...'}
+                    {isLarge ? project.excerpt : project.excerpt.substring(0, 120) + '…'}
                 </p>
 
                 {/* Action Links */}

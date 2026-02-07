@@ -46,12 +46,12 @@ const skills: Skill[] = [
 
 const funFacts = [
     "I think distributed systems are beautiful puzzles waiting to be solved",
-    "I enjoy diving into youtube videos where the person is talking about a niche topic ...'what is attention?? and then goes to explain something so indepth'",
+    "I enjoy diving into youtube videos where the person is talking about a niche topic… 'what is attention?? and then goes to explain something so indepth'",
     "I love reading books on philosophy and life lessons",
     "I genuinely believe music heals the soul",
     "Working out is second nature to me",
-    "I enjoy film ... not movies Film!!!",
-    "Big tech nerd ...if money allowed i would have the latest macbook pro each year",
+    "I enjoy film… not movies. Film!!!",
+    "Big tech nerd… if money allowed i would have the latest macbook pro each year",
 
 ];
 
@@ -78,7 +78,7 @@ const About = () => {
                         Years later, I chose to pursue Computer Science, and it was like discovering a new universe. Compiler construction, distributed systems, concurrency—each concept revealed just how deep the rabbit hole goes. I was hooked.
                     </p>
                         <p className=" text-gray-700 font-inter leading-relaxed">
-                        If there&apos;s one thing this journey has taught me, it&apos;s the importance of curiosity. Try, fail, learn, and try again. As Alan Watts said: &quot;The purpose of music is not the end of the composition... the whole point of the dancing is the dance.&quot; For me, software engineering is the same—the beauty is in the process.
+                        If there&apos;s one thing this journey has taught me, it&apos;s the importance of curiosity. Try, fail, learn, and try again. As Alan Watts said: &quot;The purpose of music is not the end of the composition… the whole point of the dancing is the dance.&quot; For me, software engineering is the same—the beauty is in the process.
                     </p>
                 </div>
 

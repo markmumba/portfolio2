@@ -49,17 +49,19 @@ const Footer = () => {
                                         href="https://github.com/markmumba"
                                         target="_blank"
                                         rel="noopener noreferrer"
+                                        aria-label="GitHub"
                                         className="text-newspaper-gray hover:text-accent-red transition-colors duration-200"
                                     >
-                                        <span className="text-lg">🐙</span>
+                                        <span className="text-lg" aria-hidden="true">🐙</span>
                                     </Link>
                                     <Link
                                         href="https://www.linkedin.com/in/markian-mumba-67231517a/"
                                         target="_blank"
                                         rel="noopener noreferrer"
+                                        aria-label="LinkedIn"
                                         className="text-newspaper-gray hover:text-accent-red transition-colors duration-200"
                                     >
-                                        <span className="text-lg">💼</span>
+                                        <span className="text-lg" aria-hidden="true">💼</span>
                                     </Link>
                                 </div>
                             </div>

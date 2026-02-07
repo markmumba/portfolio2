@@ -36,6 +36,12 @@ export default function RootLayout({
       <body
         className={` ${inter.variable} ${fraunces.variable} antialiased`}
       >
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-white focus:text-black focus:px-4 focus:py-2 focus:border focus:border-black"
+        >
+          Skip to main content
+        </a>
         {children}
       </body>
     </html>

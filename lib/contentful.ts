@@ -1,5 +1,6 @@
 import { createClient } from "contentful";
 import type { Asset } from "contentful";
+import { optimizeContentfulImageUrl } from "@/lib/contentful-image";
 
 const client = createClient({
     space: process.env.CONTENTFUL_SPACE_ID!,
@@ -17,8 +18,8 @@ function getImageUrl(blogImage: Asset): string {
                 let url = String(asset.fields.file.url);
                 url = url.startsWith('//') ? `https:${url}` : url;
 
-                // Return original URL
-                return url;
+                // Return optimized URL when served by Contentful CDN
+                return optimizeContentfulImageUrl(url);
             }
         }
         return '/default-image.webp'; // Fallback image

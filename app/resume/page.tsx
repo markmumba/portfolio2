@@ -84,7 +84,7 @@ const tools = [
 
 export default function ResumePage() {
     return (
-        <main className="min-h-screen bg-neutral-950 text-neutral-100 flex items-center justify-center px-4 py-10">
+        <main id="main" className="min-h-screen bg-neutral-950 text-neutral-100 flex items-center justify-center px-4 py-10">
             <article className="w-full max-w-4xl bg-neutral-950 text-neutral-100 border border-neutral-800 shadow-2xl shadow-black/40 px-6 py-8 md:px-12 md:py-12">
                 {/* Header */}
                 <header className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2 mb-10">
@@ -234,5 +234,4 @@ export default function ResumePage() {
         </main>
     );
 }
-
 

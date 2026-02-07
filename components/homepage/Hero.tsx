@@ -61,6 +61,7 @@ const Hero = () => {
                                     src="/hero.webp"
                                     alt="Portrait of Mark Mumba"
                                     fill
+                                    sizes="(max-width: 1024px) 100vw, 40vw"
                                     className="object-cover"
                                     priority
                                 />
