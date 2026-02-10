@@ -20,14 +20,33 @@ const extractText = (richText: unknown): string => {
 const formatDate = (dateString: string): string => {
     try {
         const date = new Date(dateString);
-        return date.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-    } catch (error) {
-        return error as string;
+        const now = new Date();
+        const diffTime = Math.abs(now.getTime() - date.getTime());
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+        if (diffDays === 0) {
+            return 'Today';
+        } else if (diffDays === 1) {
+            return '1 day ago';
+        } else if (diffDays < 7) {
+            return `${diffDays} days ago`;
+        } else {
+            return date.toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric'
+            });
+        }
+    } catch {
+        return '';
     }
+};
+
+const calculateReadTime = (article: unknown): number => {
+    const wordsPerMinute = 200;
+    const text = extractText(article);
+    const words = text.split(/\s+/).length;
+    return Math.max(1, Math.ceil(words / wordsPerMinute));
 };
 
 export default async function EssayPage({ params }: { params: Promise<{ id: string }> }) {
@@ -39,16 +58,15 @@ export default async function EssayPage({ params }: { params: Promise<{ id: stri
 
     if (!essay) {
         return (
-            <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-                <div className="text-center bg-white p-12 shadow-lg max-w-md">
-                    <div className="text-6xl mb-6">📄</div>
-                    <h1 className="text-2xl font-bold text-black mb-4">Essay Not Found</h1>
+            <div className="min-h-screen bg-white flex items-center justify-center p-4">
+                <div className="text-center max-w-md">
+                    <h1 className="text-2xl font-bold text-gray-900 mb-4 font-heading">Essay Not Found</h1>
                     <p className="text-gray-600 font-inter mb-6">
                         The essay you&apos;re looking for doesn&apos;t exist or may have been moved.
                     </p>
                     <Link
                         href="/essays"
-                        className="inline-block bg-black text-white px-6 py-3 font-inter hover:bg-gray-800 transition-colors duration-200"
+                        className="inline-block bg-gray-900 text-white px-6 py-3 font-inter text-sm hover:bg-gray-800 transition-colors"
                     >
                         View All Essays
                     </Link>
@@ -57,120 +75,136 @@ export default async function EssayPage({ params }: { params: Promise<{ id: stri
         );
     }
 
+    const authorName = extractText(essay.author) || 'Anonymous';
+    const readTime = calculateReadTime(essay.article);
+    const category = extractText(essay.category);
+
     return (
-        <div className="min-h-screen bg-gray-50">
-            {/* Navigation */}
-            <nav className="bg-white border-b border-gray-200 py-4">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center text-sm text-gray-600 font-inter min-w-0">
-                        <Link href="/" className="hover:text-black transition-colors">
-                            Home
-                        </Link>
-                        <span className="mx-2">→</span>
-                        <Link href="/essays" className="hover:text-black transition-colors">
-                            Essays
-                        </Link>
-                        <span className="mx-2">→</span>
-                        <span className="text-black font-medium truncate">
-                            {extractText(essay.title)}
-                        </span>
-                    </div>
+        <div className="min-h-screen bg-white">
+            {/* Minimal Nav */}
+            <nav className="border-b border-gray-100 py-4">
+                <div className="max-w-[728px] mx-auto px-4 sm:px-6">
+                    <Link href="/essays" className="text-sm text-gray-500 hover:text-gray-900 font-inter transition-colors">
+                        ← All Essays
+                    </Link>
                 </div>
             </nav>
 
-            {/* Article Content */}
-            <main id="main" className="py-16">
-                <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Article */}
+            <main>
+                <article className="max-w-[728px] mx-auto px-4 sm:px-6">
                     {/* Header */}
-                    <header className="mb-10">
-                        <div className="mb-4">
-                            <span className="inline-block bg-gray-100 text-gray-700 px-3 py-1 text-xs font-inter">
-                                {extractText(essay.category)}
-                            </span>
-                        </div>
-
-                        <h1 className="text-2xl md:text-3xl font-bold text-black mb-4 leading-tight font-heading">
+                    <header className="pt-10 md:pt-16 pb-8">
+                        {/* Title - Large serif like Medium */}
+                        <h1 className="text-[32px] sm:text-[40px] md:text-[46px] font-bold text-gray-900 leading-[1.15] font-heading tracking-[-0.02em] mb-8">
                             {extractText(essay.title)}
                         </h1>
 
-                        <div className="flex items-center gap-4 text-xs text-gray-600 font-inter">
-                            <span>By {extractText(essay.author)}</span>
-                            <span>•</span>
-                            <span>{formatDate(extractText(essay.publishDate))}</span>
+                        {/* Author Section */}
+                        <div className="flex items-center gap-4 mb-6">
+                            <div className="w-12 h-12 bg-gray-900 flex items-center justify-center text-white text-lg font-medium flex-shrink-0">
+                                {authorName.charAt(0).toUpperCase()}
+                            </div>
+                            <div>
+                                <div className="flex items-center gap-3">
+                                    <span className="font-medium text-gray-900 font-inter">
+                                        {authorName}
+                                    </span>
+                                    {category && (
+                                        <>
+                                            <span className="text-gray-400 text-sm">in</span>
+                                            <span className="text-gray-900 font-inter text-sm">{category}</span>
+                                        </>
+                                    )}
+                                </div>
+                                <div className="flex items-center gap-2 text-sm text-gray-500 font-inter mt-1">
+                                    <span>{readTime} min read</span>
+                                    <span>·</span>
+                                    <span>{formatDate(extractText(essay.publishDate))}</span>
+                                </div>
+                            </div>
                         </div>
 
-                        {essay.tags && essay.tags.length > 0 && (
-                            <div className="flex flex-wrap gap-2 mt-4">
-                                {essay.tags.map((tag) => (
-                                    <span
-                                        key={tag}
-                                        className="bg-gray-100 text-gray-700 px-2 py-1 text-xs font-inter border border-gray-300"
-                                    >
-                                        {tag}
-                                    </span>
-                                ))}
-                            </div>
-                        )}
+                        {/* Divider */}
+                        <div className="border-t border-gray-100 pt-6">
+                            {/* Tags */}
+                            {essay.tags && essay.tags.length > 0 && (
+                                <div className="flex flex-wrap gap-2">
+                                    {essay.tags.map((tag) => (
+                                        <span
+                                            key={tag}
+                                            className="bg-gray-100 text-gray-600 px-3 py-1 text-sm font-inter"
+                                        >
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
                     </header>
 
                     {/* Featured Image */}
                     {essay.blogImage && (
-                        <div className="mb-10">
+                        <figure className="mb-10">
                             <div className="relative aspect-[16/9] bg-gray-100 overflow-hidden">
                                 <Image
                                     src={imageUrl}
                                     alt={essay.blogImageAlt || extractText(essay.title)}
                                     fill
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px"
+                                    sizes="(max-width: 768px) 100vw, 728px"
                                     className="object-cover"
+                                    priority
                                 />
                             </div>
                             {essay.blogImageOwner && (
-                                <p className="text-xs text-gray-500 font-inter mt-2 italic">
+                                <figcaption className="text-sm text-gray-500 font-inter mt-3 text-center">
                                     {extractText(essay.blogImageOwner)}
-                                </p>
+                                </figcaption>
                             )}
-                        </div>
+                        </figure>
                     )}
 
                     {/* Article Body */}
-                    <div className="prose prose-base prose-gray max-w-none">
-                        <div className="font-inter text-base leading-relaxed text-gray-800">
-                            <RichTextRenderer content={essay.article as Document} />
-                        </div>
+                    <div className="article-content pb-12">
+                        <RichTextRenderer content={essay.article as Document} />
                     </div>
 
                     {/* Wisdom Nugget */}
                     {essay.nugget && (
-                        <div className="mt-12 pt-8 border-t border-gray-200">
-                            <div className="bg-gray-100 p-6 border-l-4 border-black">
-                                <h3 className="text-base font-bold text-black mb-3">💎 Random Nugget</h3>
-                                <blockquote className="text-gray-700 font-inter italic text-base leading-relaxed mb-3">
-                                    &quot;{extractText(essay.nugget)}&quot;
+                        <aside className="py-10 border-t border-gray-200">
+                            <div className="bg-gray-50 p-8 border-l-4 border-gray-900">
+                                <div className="flex items-center gap-2 mb-4">
+                                    <span className="text-xl">💎</span>
+                                    <span className="text-xs font-medium text-gray-500 uppercase tracking-wider font-inter">
+                                        Nugget of Wisdom
+                                    </span>
+                                </div>
+                                <blockquote className="text-xl text-gray-900 font-serif italic leading-relaxed mb-4">
+                                    &ldquo;{extractText(essay.nugget)}&rdquo;
                                 </blockquote>
                                 {essay.nuggetAuthor && (
-                                    <cite className="text-gray-600 font-inter font-medium text-sm">
+                                    <cite className="text-gray-600 font-inter text-sm not-italic">
                                         — {extractText(essay.nuggetAuthor)}
                                     </cite>
                                 )}
                             </div>
-                        </div>
+                        </aside>
                     )}
 
-                    {/* Navigation Footer */}
-                    <footer className="mt-12 pt-8 border-t border-gray-200">
-                        <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+                    {/* Footer */}
+                    <footer className="py-10 border-t border-gray-200">
+                        <div className="flex justify-between items-center">
                             <Link
                                 href="/essays"
-                                className="text-gray-600 font-inter text-sm hover:text-black transition-colors duration-200"
+                                className="text-gray-500 font-inter text-sm hover:text-gray-900 transition-colors"
                             >
                                 ← All Essays
                             </Link>
                             <Link
                                 href="/"
-                                className="text-gray-600 font-inter text-sm hover:text-black transition-colors duration-200"
+                                className="text-gray-500 font-inter text-sm hover:text-gray-900 transition-colors"
                             >
-                                Back to Home →
+                                Home →
                             </Link>
                         </div>
                     </footer>

@@ -51,6 +51,13 @@ export async function getEssays() {
         });
 
         return response.items.map(item => {
+            const rawTags = item.fields.tags;
+            const tags = Array.isArray(rawTags)
+                ? rawTags.filter(tag => tag !== null && tag !== undefined).map(tag => String(tag))
+                : typeof rawTags === 'string'
+                    ? rawTags.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0)
+                    : [];
+
             return {
                 id: String(item.fields.id),
                 blogImage: getImageUrl(item.fields.blogImage as Asset),
@@ -61,7 +68,7 @@ export async function getEssays() {
                 author: item.fields.author,
                 publishDate: item.fields.publishDate,
                 category: item.fields.category,
-                tags: item.fields.tags,
+                tags,
                 nugget: item.fields.nugget,
                 nuggetAuthor: item.fields.nuggetAuthor,
                 sys: item.sys
@@ -82,6 +89,13 @@ export async function getEssaysForHomepage() {
         });
 
         return response.items.map(item => {
+            const rawTags = item.fields.tags;
+            const tags = Array.isArray(rawTags)
+                ? rawTags.filter(tag => tag !== null && tag !== undefined).map(tag => String(tag))
+                : typeof rawTags === 'string'
+                    ? rawTags.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0)
+                    : [];
+
             return {
                 id: String(item.fields.id),
                 blogImage: getImageUrl(item.fields.blogImage as Asset),
@@ -92,7 +106,7 @@ export async function getEssaysForHomepage() {
                 author: item.fields.author,
                 publishDate: item.fields.publishDate,
                 category: item.fields.category,
-                tags: item.fields.tags,
+                tags,
                 nugget: item.fields.nugget,
                 nuggetAuthor: item.fields.nuggetAuthor,
                 sys: item.sys

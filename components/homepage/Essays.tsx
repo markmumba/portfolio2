@@ -1,12 +1,13 @@
 import { getEssaysForHomepage } from "@/lib/contentful";
 import { EssayCard } from "../shared/EssayCard";
 import Link from "next/link";
+import { Essays as EssaysType } from "@/lib/definition";
 
 function getBentoGridClasses(index: number): string {
     const patterns = [
-        "col-span-1 md:col-span-2 row-span-1 md:row-span-2", 
-        "col-span-1 row-span-1", 
-        "col-span-1 row-span-1", 
+        "col-span-1 md:col-span-2 row-span-1 md:row-span-2",
+        "col-span-1 row-span-1",
+        "col-span-1 row-span-1",
         "col-span-1 md:col-span-3 lg:col-span-4 row-span-1",
     ];
     return patterns[index % patterns.length];
@@ -51,7 +52,7 @@ const Essays = async () => {
 
                         return (
                             <div key={String(essay.id)} className={gridClasses}>
-                                <EssayCard essay={essay} />
+                                <EssayCard essay={essay as EssaysType} />
                             </div>
                         );
                     })}

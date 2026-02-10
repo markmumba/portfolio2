@@ -1,23 +1,27 @@
 export interface Essays {
     id: string;
     blogImage: string;
-    title: unknown; 
-    article: unknown; 
-    author: unknown; 
-    publishDate: unknown; 
-    category: unknown; 
+    blogImageAlt?: string;
+    title: unknown;
+    article: unknown;
+    author: unknown;
+    publishDate: unknown;
+    category: unknown;
+    tags?: string[];
     sys: unknown;
 }
 export interface Essay {
     id: string;
     blogImage: string;
-    blogImageOwner:string;
-    title: unknown; 
+    blogImageAlt?: string;
+    blogImageOwner: string;
+    title: unknown;
     article: unknown;
     author: unknown;
     nugget: unknown;
     nuggetAuthor: unknown;
-    publishDate: unknown; 
-    category: unknown; 
+    publishDate: unknown;
+    category: unknown;
+    tags?: string[];
     sys: unknown;
 }
