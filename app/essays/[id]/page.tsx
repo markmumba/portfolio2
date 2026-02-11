@@ -4,6 +4,9 @@ import { Document } from "@contentful/rich-text-types";
 import Link from "next/link";
 import Image from "next/image";
 import { optimizeContentfulImageUrl } from "@/lib/contentful-image";
+import LikesAndReviews from "@/components/shared/LikesAndReviews";
+import ShareButton from "@/components/shared/ShareButton";
+import { Metadata } from "next";
 
 const extractText = (richText: unknown): string => {
     if (typeof richText === 'string') {
@@ -15,6 +18,29 @@ const extractText = (richText: unknown): string => {
         return content || '';
     }
     return '';
+};
+
+const richTextToPlainText = (rich: unknown): string => {
+    if (!rich || typeof rich !== 'object') return '';
+    const root = rich as { content?: unknown[] };
+    const parts: string[] = [];
+
+    const walk = (node: unknown) => {
+        if (!node) return;
+        const n = node as { value?: unknown; content?: unknown[] };
+        if (typeof n.value === 'string') {
+            parts.push(n.value);
+        }
+        if (Array.isArray(n.content)) {
+            n.content.forEach(walk);
+        }
+    };
+
+    if (Array.isArray(root.content)) {
+        root.content.forEach(walk);
+    }
+
+    return parts.join(' ');
 };
 
 const formatDate = (dateString: string): string => {
@@ -44,10 +70,76 @@ const formatDate = (dateString: string): string => {
 
 const calculateReadTime = (article: unknown): number => {
     const wordsPerMinute = 200;
-    const text = extractText(article);
-    const words = text.split(/\s+/).length;
+    const fullText = richTextToPlainText(article);
+    const text = fullText || extractText(article);
+    const words = text.split(/\s+/).filter(Boolean).length;
     return Math.max(1, Math.ceil(words / wordsPerMinute));
 };
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+    const { id } = await params;
+    const essay = await getEssayById(id);
+
+    if (!essay) {
+        return {
+            title: 'Essay Not Found | markian.fit',
+            description: 'The essay you\'re looking for doesn\'t exist.',
+        };
+    }
+
+    const title = extractText(essay.title);
+    const authorName = extractText(essay.author) || 'Markian Mumba';
+    const category = extractText(essay.category);
+    const articleText = richTextToPlainText(essay.article) || extractText(essay.article);
+
+    const excerpt = articleText.length > 160
+        ? articleText.substring(0, 157) + '...'
+        : articleText;
+
+    const ogImageParams = new URLSearchParams({
+        title: title,
+        author: authorName,
+    });
+    if (category) {
+        ogImageParams.append('category', category);
+    }
+    if (essay.blogImage) {
+        ogImageParams.append('image', String(essay.blogImage));
+    }
+    const ogImageUrl = `/api/og?${ogImageParams.toString()}`;
+
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
+        || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null)
+        || 'http://localhost:3000';
+    const fullOgImageUrl = `${baseUrl}${ogImageUrl}`;
+
+    return {
+        title: `${title} | markian.fit`,
+        description: excerpt,
+        authors: [{ name: authorName }],
+        openGraph: {
+            title: title,
+            description: excerpt,
+            type: 'article',
+            publishedTime: extractText(essay.publishDate),
+            authors: [authorName],
+            images: [
+                {
+                    url: fullOgImageUrl,
+                    width: 1200,
+                    height: 630,
+                    alt: title,
+                },
+            ],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: title,
+            description: excerpt,
+            images: [fullOgImageUrl],
+        },
+    };
+}
 
 export default async function EssayPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
@@ -81,7 +173,6 @@ export default async function EssayPage({ params }: { params: Promise<{ id: stri
 
     return (
         <div className="min-h-screen bg-white">
-            {/* Minimal Nav */}
             <nav className="border-b border-gray-100 py-4">
                 <div className="max-w-[728px] mx-auto px-4 sm:px-6">
                     <Link href="/essays" className="text-sm text-gray-500 hover:text-gray-900 font-inter transition-colors">
@@ -90,17 +181,13 @@ export default async function EssayPage({ params }: { params: Promise<{ id: stri
                 </div>
             </nav>
 
-            {/* Article */}
             <main>
                 <article className="max-w-[728px] mx-auto px-4 sm:px-6">
-                    {/* Header */}
                     <header className="pt-10 md:pt-16 pb-8">
-                        {/* Title - Large serif like Medium */}
                         <h1 className="text-[32px] sm:text-[40px] md:text-[46px] font-bold text-gray-900 leading-[1.15] font-heading tracking-[-0.02em] mb-8">
                             {extractText(essay.title)}
                         </h1>
 
-                        {/* Author Section */}
                         <div className="flex items-center gap-4 mb-6">
                             <div className="w-12 h-12 bg-gray-900 flex items-center justify-center text-white text-lg font-medium flex-shrink-0">
                                 {authorName.charAt(0).toUpperCase()}
@@ -127,19 +214,29 @@ export default async function EssayPage({ params }: { params: Promise<{ id: stri
 
                         {/* Divider */}
                         <div className="border-t border-gray-100 pt-6">
-                            {/* Tags */}
-                            {essay.tags && essay.tags.length > 0 && (
-                                <div className="flex flex-wrap gap-2">
-                                    {essay.tags.map((tag) => (
-                                        <span
-                                            key={tag}
-                                            className="bg-gray-100 text-gray-600 px-3 py-1 text-sm font-inter"
-                                        >
-                                            {tag}
-                                        </span>
-                                    ))}
-                                </div>
-                            )}
+                            <div className="flex items-center justify-between mb-4">
+                                {/* Tags */}
+                                {essay.tags && essay.tags.length > 0 && (
+                                    <div className="flex flex-wrap gap-2">
+                                        {essay.tags.map((tag) => (
+                                            <span
+                                                key={tag}
+                                                className="bg-gray-100 text-gray-600 px-3 py-1 text-sm font-inter"
+                                            >
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
+                                )}
+                                {/* Share Button */}
+                                <ShareButton
+                                    essayId={id}
+                                    title={extractText(essay.title)}
+                                    author={authorName}
+                                    category={category}
+                                    imageUrl={imageUrl}
+                                />
+                            </div>
                         </div>
                     </header>
 
@@ -190,6 +287,9 @@ export default async function EssayPage({ params }: { params: Promise<{ id: stri
                             </div>
                         </aside>
                     )}
+
+                    {/* Likes and Reviews */}
+                    <LikesAndReviews essayId={id} />
 
                     {/* Footer */}
                     <footer className="py-10 border-t border-gray-200">
