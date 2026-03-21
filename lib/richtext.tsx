@@ -60,33 +60,33 @@ const renderOptions = {
             }
 
             return (
-                <p className="mb-8 text-[21px] leading-[1.58] text-gray-700 font-serif">
+                <p className="mb-6 md:mb-8 text-base md:text-[21px] leading-[1.6] md:leading-[1.58] text-gray-700 font-serif">
                     {children}
                 </p>
             );
         },
         [BLOCKS.HEADING_1]: (_node: Block | Inline, children: React.ReactNode) => (
-            <h1 className="text-[32px] font-bold text-gray-900 mt-14 mb-4 font-heading leading-tight tracking-tight">
+            <h1 className="text-2xl md:text-[32px] font-bold text-gray-900 mt-10 md:mt-14 mb-4 font-heading leading-tight tracking-tight">
                 {children}
             </h1>
         ),
         [BLOCKS.HEADING_2]: (_node: Block | Inline, children: React.ReactNode) => (
-            <h2 className="text-[26px] font-bold text-gray-900 mt-12 mb-3 font-heading leading-snug">
+            <h2 className="text-xl md:text-[26px] font-bold text-gray-900 mt-8 md:mt-12 mb-3 font-heading leading-snug">
                 {children}
             </h2>
         ),
         [BLOCKS.HEADING_3]: (_node: Block | Inline, children: React.ReactNode) => (
-            <h3 className="text-[22px] font-bold text-gray-900 mt-10 mb-3 font-heading leading-snug">
+            <h3 className="text-lg md:text-[22px] font-bold text-gray-900 mt-6 md:mt-10 mb-3 font-heading leading-snug">
                 {children}
             </h3>
         ),
         [BLOCKS.HEADING_4]: (_node: Block | Inline, children: React.ReactNode) => (
-            <h4 className="text-[20px] font-bold text-gray-900 mt-8 mb-2 font-heading">
+            <h4 className="text-base md:text-[20px] font-bold text-gray-900 mt-6 md:mt-8 mb-2 font-heading">
                 {children}
             </h4>
         ),
         [BLOCKS.HEADING_5]: (_node: Block | Inline, children: React.ReactNode) => (
-            <h5 className="text-[18px] font-bold text-gray-900 mt-6 mb-2 font-heading">
+            <h5 className="text-sm md:text-[18px] font-bold text-gray-900 mt-6 mb-2 font-heading">
                 {children}
             </h5>
         ),
@@ -96,12 +96,12 @@ const renderOptions = {
             </h6>
         ),
         [BLOCKS.UL_LIST]: (_node: Block | Inline, children: React.ReactNode) => (
-            <ul className="my-6 space-y-1 text-[21px] leading-[1.58] text-gray-700 font-serif">
+            <ul className="my-6 space-y-1 text-base md:text-[21px] leading-[1.6] md:leading-[1.58] text-gray-700 font-serif">
                 {children}
             </ul>
         ),
         [BLOCKS.OL_LIST]: (_node: Block | Inline, children: React.ReactNode) => (
-            <ol className="my-6 space-y-1 text-[21px] leading-[1.58] text-gray-700 font-serif list-decimal list-outside ml-8">
+            <ol className="my-6 space-y-1 text-base md:text-[21px] leading-[1.6] md:leading-[1.58] text-gray-700 font-serif list-decimal list-outside ml-8">
                 {children}
             </ol>
         ),
@@ -115,7 +115,7 @@ const renderOptions = {
         },
         [BLOCKS.QUOTE]: (_node: Block | Inline, children: React.ReactNode) => (
             <blockquote className="my-10 pl-6 border-l-[3px] border-gray-900">
-                <div className="text-[21px] leading-[1.58] text-gray-700 italic font-serif">
+                <div className="text-base md:text-[21px] leading-[1.6] md:leading-[1.58] text-gray-700 italic font-serif">
                     {children}
                 </div>
             </blockquote>
