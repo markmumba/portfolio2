@@ -2,6 +2,7 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { BLOCKS, MARKS, INLINES, Document, Block, Inline } from '@contentful/rich-text-types';
 import Image from 'next/image';
 import React from 'react';
+import CodeBlock from '@/components/shared/CodeBlock';
 
 interface TextNode {
     nodeType: 'text';
@@ -13,6 +14,77 @@ interface TextNode {
 
 interface ParagraphNode {
     content?: TextNode[];
+}
+
+interface ContentNode {
+    nodeType: string;
+    content?: TextNode[];
+    data?: Record<string, unknown>;
+}
+
+function isCodeParagraph(node: ContentNode): boolean {
+    if (node.nodeType !== 'paragraph' || !node.content) return false;
+    return node.content.every(
+        (child: TextNode) => child.nodeType === 'text' && child.marks?.some((m) => m.type === 'code')
+    );
+}
+
+function isEmptyParagraph(node: ContentNode): boolean {
+    if (node.nodeType !== 'paragraph' || !node.content) return false;
+    return node.content.every(
+        (child: TextNode) => child.nodeType === 'text' && child.value.trim() === ''
+    );
+}
+
+function getCodeText(node: ContentNode): string {
+    return node.content?.map((child: TextNode) => child.value).join('') || '';
+}
+
+/**
+ * Pre-process the document to merge consecutive code paragraphs
+ * (and empty paragraphs between them) into a single code paragraph.
+ */
+function mergeCodeBlocks(doc: Document): Document {
+    const merged: ContentNode[] = [];
+    const nodes = doc.content as ContentNode[];
+    let i = 0;
+
+    while (i < nodes.length) {
+        if (isCodeParagraph(nodes[i])) {
+            const codeLines: string[] = [getCodeText(nodes[i])];
+            let j = i + 1;
+
+            while (j < nodes.length) {
+                if (isCodeParagraph(nodes[j])) {
+                    codeLines.push(getCodeText(nodes[j]));
+                    j++;
+                } else if (isEmptyParagraph(nodes[j]) && j + 1 < nodes.length && isCodeParagraph(nodes[j + 1])) {
+                    // Empty paragraph between code blocks — treat as blank line
+                    codeLines.push('');
+                    j++;
+                } else {
+                    break;
+                }
+            }
+
+            // Create a single merged code paragraph
+            merged.push({
+                nodeType: 'paragraph',
+                content: [{
+                    nodeType: 'text',
+                    value: codeLines.join('\n'),
+                    marks: [{ type: 'code' }],
+                }],
+                data: {},
+            });
+            i = j;
+        } else {
+            merged.push(nodes[i]);
+            i++;
+        }
+    }
+
+    return { ...doc, content: merged } as Document;
 }
 
 const renderOptions = {
@@ -51,9 +123,9 @@ const renderOptions = {
             if (isCodeBlock) {
                 const codeContent = paragraphNode.content?.map((child: TextNode) => child.value).join('') || '';
                 return (
-                    <div className="my-8 rounded-lg overflow-hidden bg-gray-900">
-                        <pre className="p-6 overflow-x-auto text-sm font-mono leading-relaxed text-gray-100">
-                            <code>{codeContent}</code>
+                    <div className="my-6 md:my-8 rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
+                        <pre className="p-4 md:p-6 overflow-x-auto text-xs md:text-sm font-mono leading-relaxed text-gray-800">
+                            <CodeBlock code={codeContent} />
                         </pre>
                     </div>
                 );
@@ -217,9 +289,11 @@ export default function RichTextRenderer({ content, className = "" }: RichTextRe
         return <div className="text-gray-500 italic font-inter">No content available</div>;
     }
 
+    const processed = mergeCodeBlocks(content);
+
     return (
         <div className={`${className}`}>
-            {documentToReactComponents(content, renderOptions)}
+            {documentToReactComponents(processed, renderOptions)}
         </div>
     );
 }

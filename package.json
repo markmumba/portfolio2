@@ -13,6 +13,7 @@
     "@libsql/client": "^0.17.0",
     "axios": "^1.13.4",
     "contentful": "^11.10.3",
+    "highlight.js": "^11.11.1",
     "next": "15.5.9",
     "proxy-from-env": "^1.1.0",
     "react": "19.1.0",
