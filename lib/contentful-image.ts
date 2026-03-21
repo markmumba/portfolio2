@@ -15,9 +15,11 @@ export function optimizeContentfulImageUrl(
     }: ContentfulImageOptions = {}
 ): string {
     try {
-        const parsed = new URL(url);
+        // Fix protocol-relative URLs before parsing
+        const fixedUrl = url.startsWith('//') ? `https:${url}` : url;
+        const parsed = new URL(fixedUrl);
         if (!parsed.hostname.includes('ctfassets.net')) {
-            return url;
+            return fixedUrl;
         }
         parsed.searchParams.set('w', String(width));
         parsed.searchParams.set('q', String(quality));

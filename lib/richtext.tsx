@@ -96,18 +96,18 @@ const renderOptions = {
             </h6>
         ),
         [BLOCKS.UL_LIST]: (_node: Block | Inline, children: React.ReactNode) => (
-            <ul className="my-8 space-y-3 text-[21px] leading-[1.58] text-gray-700 font-serif">
+            <ul className="my-6 space-y-1 text-[21px] leading-[1.58] text-gray-700 font-serif">
                 {children}
             </ul>
         ),
         [BLOCKS.OL_LIST]: (_node: Block | Inline, children: React.ReactNode) => (
-            <ol className="my-8 space-y-3 text-[21px] leading-[1.58] text-gray-700 font-serif list-decimal list-outside ml-8">
+            <ol className="my-6 space-y-1 text-[21px] leading-[1.58] text-gray-700 font-serif list-decimal list-outside ml-8">
                 {children}
             </ol>
         ),
         [BLOCKS.LIST_ITEM]: (_node: Block | Inline, children: React.ReactNode) => {
             return (
-                <li className="flex items-start gap-3 leading-[1.58]">
+                <li className="flex items-start gap-3 leading-[1.58] [&>div>p]:mb-1">
                     <span className="text-gray-400 mt-1 flex-shrink-0 text-lg">•</span>
                     <div className="flex-1">{children}</div>
                 </li>
@@ -175,10 +175,12 @@ const renderOptions = {
         ),
         [BLOCKS.EMBEDDED_ASSET]: (node: Block | Inline) => {
             const { title, description, file } = (node as { data?: { target?: { fields?: { title?: string; description?: string; file?: { url?: string } } } } }).data?.target?.fields || {};
+            const rawUrl = file?.url || '';
+            const imgSrc = rawUrl.startsWith('//') ? `https:${rawUrl}` : rawUrl;
             return (
                 <figure className="my-10 -mx-4 sm:mx-0">
                     <Image
-                        src={file?.url || ''}
+                        src={imgSrc}
                         width={1000}
                         height={600}
                         alt={description || title || ''}
