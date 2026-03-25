@@ -21,6 +21,8 @@ function useDebounce<T>(value: T, delay: number): T {
     return debouncedValue;
 }
 
+const VISIBLE_TAG_COUNT = 5;
+
 export default function EssayPageSearch({ tags }: EssayPageSearchProps) {
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -30,6 +32,19 @@ export default function EssayPageSearch({ tags }: EssayPageSearchProps) {
 
     const [query, setQuery] = useState(initialSearch);
     const debouncedQuery = useDebounce(query, 300);
+    const [tagsExpanded, setTagsExpanded] = useState(false);
+
+    const visibleTags = tags.slice(0, VISIBLE_TAG_COUNT);
+    const extraTags = tags.slice(VISIBLE_TAG_COUNT);
+    const hasExtraTags = extraTags.length > 0;
+
+    useEffect(() => {
+        if (!activeTag || !hasExtraTags) return;
+        const idx = tags.findIndex((t) => t === activeTag);
+        if (idx >= VISIBLE_TAG_COUNT) {
+            setTagsExpanded(true);
+        }
+    }, [activeTag, tags, hasExtraTags]);
 
     const updateURL = useCallback((search: string, tag: string | null) => {
         const params = new URLSearchParams();
@@ -53,6 +68,13 @@ export default function EssayPageSearch({ tags }: EssayPageSearchProps) {
         const newTag = activeTag === tag ? null : tag;
         updateURL(query, newTag);
     };
+
+    const tagButtonClass = (isActive: boolean) =>
+        `px-3 py-1 text-sm font-inter border transition-colors ${
+            isActive
+                ? 'bg-gray-900 text-white border-gray-900'
+                : 'bg-gray-100 text-gray-700 border-gray-200 hover:bg-gray-900 hover:text-white'
+        }`;
 
     return (
         <div className="mb-10 max-w-[728px] mx-auto px-4 sm:px-6">
@@ -84,27 +106,97 @@ export default function EssayPageSearch({ tags }: EssayPageSearchProps) {
             </div>
 
             {tags.length > 0 && (
-                <div className="flex flex-wrap gap-2 justify-center">
-                    {tags.map((tag) => {
-                        const isActive = activeTag === tag;
-                        return (
+                <div className="flex flex-col gap-3 items-stretch max-w-xl mx-auto">
+                    <div className="flex flex-wrap gap-2 justify-center items-center">
+                        {visibleTags.map((tag) => {
+                            const isActive = activeTag === tag;
+                            return (
+                                <button
+                                    key={tag}
+                                    type="button"
+                                    onClick={() => handleTagClick(tag)}
+                                    className={tagButtonClass(isActive)}
+                                >
+                                    {tag}
+                                    {isActive && (
+                                        <span className="ml-1.5 text-gray-400">&times;</span>
+                                    )}
+                                </button>
+                            );
+                        })}
+                        {hasExtraTags && (
                             <button
-                                key={tag}
                                 type="button"
-                                onClick={() => handleTagClick(tag)}
-                                className={`px-3 py-1 text-sm font-inter border transition-colors ${
-                                    isActive
-                                        ? 'bg-gray-900 text-white border-gray-900'
-                                        : 'bg-gray-100 text-gray-700 border-gray-200 hover:bg-gray-900 hover:text-white'
-                                }`}
+                                onClick={() => setTagsExpanded((v) => !v)}
+                                aria-expanded={tagsExpanded}
+                                className="px-3 py-1 text-sm font-inter border border-dashed border-gray-300 text-gray-600 bg-white hover:border-gray-900 hover:text-gray-900 transition-colors inline-flex items-center gap-1.5"
                             >
-                                {tag}
-                                {isActive && (
-                                    <span className="ml-1.5 text-gray-400">&times;</span>
+                                {tagsExpanded ? (
+                                    <>
+                                        Hide extra tags
+                                        <svg
+                                            className="h-4 w-4"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                            aria-hidden="true"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M5 15l7-7 7 7"
+                                            />
+                                        </svg>
+                                    </>
+                                ) : (
+                                    <>
+                                        More tags
+                                        <span className="text-gray-400">({extraTags.length})</span>
+                                        <svg
+                                            className="h-4 w-4"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                            aria-hidden="true"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M19 9l-7 7-7-7"
+                                            />
+                                        </svg>
+                                    </>
                                 )}
                             </button>
-                        );
-                    })}
+                        )}
+                    </div>
+
+                    {hasExtraTags && tagsExpanded && (
+                        <div
+                            className="flex flex-wrap gap-2 justify-center pt-1 border-t border-gray-100"
+                            role="region"
+                            aria-label="Additional essay tags"
+                        >
+                            {extraTags.map((tag) => {
+                                const isActive = activeTag === tag;
+                                return (
+                                    <button
+                                        key={tag}
+                                        type="button"
+                                        onClick={() => handleTagClick(tag)}
+                                        className={tagButtonClass(isActive)}
+                                    >
+                                        {tag}
+                                        {isActive && (
+                                            <span className="ml-1.5 text-gray-400">&times;</span>
+                                        )}
+                                    </button>
+                                );
+                            })}
+                        </div>
+                    )}
                 </div>
             )}
         </div>
