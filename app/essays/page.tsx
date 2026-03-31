@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { optimizeContentfulImageUrl } from "@/lib/contentful-image";
 import EssayPageSearch from "@/components/shared/EssayPageSearch";
+import DarkModeToggle from "@/components/shared/DarkModeToggle";
 
 const extractText = (richText: unknown): string => {
     if (typeof richText === 'string') {
@@ -176,16 +177,19 @@ export default async function EssaysPage({
     );
 
     return (
-        <div className="min-h-screen bg-white">
+        <div className="min-h-screen bg-white essays-page transition-colors duration-300">
             {/* Header */}
             <header className="border-b border-gray-200">
                 <div className="max-w-[728px] mx-auto px-4 sm:px-6 py-6">
-                    <nav className="flex items-center text-sm text-gray-500 font-inter mb-6">
-                        <Link href="/" className="hover:text-gray-900 transition-colors">
-                            Home
-                        </Link>
-                        <span className="mx-2">/</span>
-                        <span className="text-gray-900">Essays</span>
+                    <nav className="flex items-center justify-between mb-6">
+                        <div className="flex items-center text-sm text-gray-500 font-inter">
+                            <Link href="/" className="hover:text-gray-900 transition-colors">
+                                Home
+                            </Link>
+                            <span className="mx-2">/</span>
+                            <span className="text-gray-900">Essays</span>
+                        </div>
+                        <DarkModeToggle />
                     </nav>
                     <h1 className="text-4xl md:text-5xl font-bold text-gray-900 font-heading">
                         Essays

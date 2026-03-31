@@ -66,6 +66,260 @@ h3 {
 }
 
 
+/* Essays dark mode */
+.essays-dark {
+  --essays-bg: #1a1a1a;
+  --essays-surface: #242424;
+  --essays-border: #333;
+  --essays-text: #e0e0e0;
+  --essays-text-secondary: #999;
+  --essays-text-muted: #777;
+  --essays-heading: #f0f0f0;
+  --essays-code-bg: #2d2d2d;
+  --essays-tag-bg: #333;
+  --essays-tag-text: #ccc;
+  --essays-avatar-bg: #e0e0e0;
+  --essays-avatar-text: #1a1a1a;
+}
+
+.essays-dark .dark-toggle-btn {
+  border-color: #444;
+  color: #e0e0e0;
+}
+.essays-dark .dark-toggle-btn:hover {
+  background: #333 !important;
+}
+
+/* Essays list page */
+.essays-dark .essays-page {
+  background: var(--essays-bg);
+  color: var(--essays-text);
+}
+.essays-dark .essays-page header {
+  border-color: var(--essays-border);
+}
+.essays-dark .essays-page h1 {
+  color: var(--essays-heading);
+}
+.essays-dark .essays-page nav a {
+  color: var(--essays-text-muted);
+}
+.essays-dark .essays-page nav a:hover {
+  color: var(--essays-text);
+}
+.essays-dark .essays-page nav span {
+  color: var(--essays-text-muted);
+}
+.essays-dark .essays-page nav .text-gray-900 {
+  color: var(--essays-heading);
+}
+.essays-dark .essays-page article {
+  border-color: var(--essays-border);
+}
+.essays-dark .essays-page article h2 {
+  color: var(--essays-heading);
+}
+.essays-dark .essays-page article h2:hover,
+.essays-dark .essays-page .group:hover h2 {
+  color: var(--essays-text-secondary) !important;
+}
+.essays-dark .essays-page article p {
+  color: var(--essays-text-secondary);
+}
+.essays-dark .essays-page .text-gray-900 {
+  color: var(--essays-heading);
+}
+.essays-dark .essays-page .text-gray-500 {
+  color: var(--essays-text-muted);
+}
+.essays-dark .essays-page .text-gray-400 {
+  color: var(--essays-text-muted);
+}
+.essays-dark .essays-page .bg-gray-900 {
+  background: var(--essays-avatar-bg);
+  color: var(--essays-avatar-text);
+}
+.essays-dark .essays-page .bg-gray-100 {
+  background: var(--essays-surface);
+  color: var(--essays-tag-text);
+}
+.essays-dark .essays-page .border-gray-100,
+.essays-dark .essays-page .border-gray-200 {
+  border-color: var(--essays-border);
+}
+
+/* Individual essay page */
+.essays-dark .essay-detail {
+  background: var(--essays-bg);
+  color: var(--essays-text);
+}
+.essays-dark .essay-detail nav {
+  border-color: var(--essays-border);
+}
+.essays-dark .essay-detail nav a {
+  color: var(--essays-text-muted);
+}
+.essays-dark .essay-detail nav a:hover {
+  color: var(--essays-text);
+}
+.essays-dark .essay-detail h1 {
+  color: var(--essays-heading);
+}
+.essays-dark .essay-detail .text-gray-900 {
+  color: var(--essays-heading);
+}
+.essays-dark .essay-detail .text-gray-500,
+.essays-dark .essay-detail .text-gray-600 {
+  color: var(--essays-text-muted);
+}
+.essays-dark .essay-detail .text-gray-400 {
+  color: #666;
+}
+.essays-dark .essay-detail .text-gray-700 {
+  color: var(--essays-text-secondary);
+}
+.essays-dark .essay-detail .bg-gray-900 {
+  background: var(--essays-avatar-bg);
+  color: var(--essays-avatar-text);
+}
+.essays-dark .essay-detail .bg-gray-100 {
+  background: var(--essays-tag-bg);
+  color: var(--essays-tag-text);
+}
+.essays-dark .essay-detail .bg-gray-50 {
+  background: var(--essays-surface);
+}
+.essays-dark .essay-detail .border-gray-100,
+.essays-dark .essay-detail .border-gray-200 {
+  border-color: var(--essays-border);
+}
+.essays-dark .essay-detail .border-gray-900 {
+  border-color: var(--essays-text-secondary);
+}
+.essays-dark .essay-detail footer {
+  border-color: var(--essays-border);
+}
+.essays-dark .essay-detail footer a {
+  color: var(--essays-text-muted);
+}
+.essays-dark .essay-detail footer a:hover {
+  color: var(--essays-text);
+}
+
+/* Article content in dark mode */
+.essays-dark .article-content p {
+  color: var(--essays-text-secondary);
+}
+.essays-dark .article-content h1,
+.essays-dark .article-content h2,
+.essays-dark .article-content h3,
+.essays-dark .article-content h4,
+.essays-dark .article-content h5,
+.essays-dark .article-content h6 {
+  color: var(--essays-heading);
+}
+.essays-dark .article-content strong {
+  color: var(--essays-heading);
+}
+.essays-dark .article-content a {
+  color: var(--essays-heading);
+  text-decoration-color: var(--essays-text-muted);
+}
+.essays-dark .article-content a:hover {
+  text-decoration-color: var(--essays-heading);
+}
+.essays-dark .article-content ul,
+.essays-dark .article-content ol {
+  color: var(--essays-text-secondary);
+}
+.essays-dark .article-content li .text-gray-400 {
+  color: #555;
+}
+.essays-dark .article-content blockquote {
+  border-color: var(--essays-text-secondary);
+}
+.essays-dark .article-content blockquote div {
+  color: var(--essays-text-secondary);
+}
+.essays-dark .article-content code {
+  background: var(--essays-code-bg);
+  color: var(--essays-text);
+}
+.essays-dark .article-content pre {
+  background: var(--essays-code-bg) !important;
+  color: var(--essays-text);
+}
+.essays-dark .article-content .bg-gray-100 {
+  background: var(--essays-code-bg);
+}
+.essays-dark .article-content .border-gray-200 {
+  border-color: var(--essays-border);
+}
+.essays-dark .article-content .text-gray-800 {
+  color: var(--essays-text);
+}
+.essays-dark .article-content table {
+  border-color: var(--essays-border);
+}
+.essays-dark .article-content th {
+  background: var(--essays-surface);
+  color: var(--essays-heading);
+}
+.essays-dark .article-content td {
+  color: var(--essays-text-secondary);
+}
+.essays-dark .article-content tr {
+  border-color: var(--essays-border);
+}
+.essays-dark .article-content .bg-gray-50 {
+  background: var(--essays-surface);
+}
+.essays-dark .article-content figcaption {
+  color: var(--essays-text-muted);
+}
+
+/* Code syntax highlighting in dark mode */
+.essays-dark .hljs {
+  background: transparent !important;
+  color: #e0e0e0 !important;
+}
+.essays-dark .hljs-keyword { color: #c792ea !important; }
+.essays-dark .hljs-string { color: #c3e88d !important; }
+.essays-dark .hljs-number { color: #f78c6c !important; }
+.essays-dark .hljs-comment { color: #697098 !important; }
+.essays-dark .hljs-function { color: #82aaff !important; }
+.essays-dark .hljs-title { color: #82aaff !important; }
+.essays-dark .hljs-params { color: #e0e0e0 !important; }
+.essays-dark .hljs-built_in { color: #ffcb6b !important; }
+.essays-dark .hljs-literal { color: #f78c6c !important; }
+.essays-dark .hljs-type { color: #ffcb6b !important; }
+.essays-dark .hljs-attr { color: #ffcb6b !important; }
+.essays-dark .hljs-selector-class { color: #ffcb6b !important; }
+.essays-dark .hljs-selector-tag { color: #ff5370 !important; }
+.essays-dark .hljs-variable { color: #f07178 !important; }
+.essays-dark .hljs-meta { color: #89ddff !important; }
+
+/* Nugget section dark mode */
+.essays-dark .essay-detail aside .bg-gray-50 {
+  background: var(--essays-surface);
+}
+.essays-dark .essay-detail aside blockquote {
+  color: var(--essays-text);
+}
+.essays-dark .essay-detail aside cite {
+  color: var(--essays-text-muted);
+}
+
+/* Search section dark mode */
+.essays-dark .essays-page input {
+  background: var(--essays-surface);
+  border-color: var(--essays-border);
+  color: var(--essays-text);
+}
+.essays-dark .essays-page input::placeholder {
+  color: var(--essays-text-muted);
+}
+
 /* Subtle newspaper texture */
 .newspaper-bg {
   background-image: radial-gradient(

@@ -6,6 +6,7 @@ import Image from "next/image";
 import { optimizeContentfulImageUrl } from "@/lib/contentful-image";
 import LikesAndReviews from "@/components/shared/LikesAndReviews";
 import ShareButton from "@/components/shared/ShareButton";
+import DarkModeToggle from "@/components/shared/DarkModeToggle";
 import { Metadata } from "next";
 
 const extractText = (richText: unknown): string => {
@@ -150,7 +151,7 @@ export default async function EssayPage({ params }: { params: Promise<{ id: stri
 
     if (!essay) {
         return (
-            <div className="min-h-screen bg-white flex items-center justify-center p-4">
+            <div className="min-h-screen bg-white essay-detail flex items-center justify-center p-4">
                 <div className="text-center max-w-md">
                     <h1 className="text-2xl font-bold text-gray-900 mb-4 font-heading">Essay Not Found</h1>
                     <p className="text-gray-600 font-inter mb-6">
@@ -172,12 +173,13 @@ export default async function EssayPage({ params }: { params: Promise<{ id: stri
     const category = extractText(essay.category);
 
     return (
-        <div className="min-h-screen bg-white">
+        <div className="min-h-screen bg-white essay-detail transition-colors duration-300">
             <nav className="border-b border-gray-100 py-4">
-                <div className="max-w-[728px] mx-auto px-4 sm:px-6">
+                <div className="max-w-[728px] mx-auto px-4 sm:px-6 flex items-center justify-between">
                     <Link href="/essays" className="text-sm text-gray-500 hover:text-gray-900 font-inter transition-colors">
                         ← All Essays
                     </Link>
+                    <DarkModeToggle />
                 </div>
             </nav>
 
