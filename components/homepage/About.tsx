@@ -71,15 +71,56 @@ const About = () => {
 
                 {/* Personal Story */}
                 <div className="mb-16">
-                    <p className=" text-gray-700 font-inter leading-relaxed mb-6">
-                        My fascination with technology began with smartphones. I remember the day my dad brought home a Samsung Note 5—it wasn&apos;t just a phone to me, it was a marvel. I&apos;d sit for hours in local movie shops with WiFi, watching videos on things like octa-core processors, hyperthreading, and multitasking.
+                    <p className="text-gray-700 font-inter leading-relaxed mb-6 font-semibold">
+                        Software Engineer specializing in backend engineering, distributed systems, and scalable application architecture.
                     </p>
-                    <p className="      text-gray-700 font-inter leading-relaxed mb-6">
-                        Years later, I chose to pursue Computer Science, and it was like discovering a new universe. Compiler construction, distributed systems, concurrency—each concept revealed just how deep the rabbit hole goes. I was hooked.
+                    <p className="text-gray-700 font-inter leading-relaxed mb-6">
+                        I build backend systems that are reliable, maintainable, and designed to scale—from REST APIs and microservices to asynchronous workflows and cloud-native applications.
                     </p>
-                        <p className=" text-gray-700 font-inter leading-relaxed">
-                        If there&apos;s one thing this journey has taught me, it&apos;s the importance of curiosity. Try, fail, learn, and try again. As Alan Watts said: &quot;The purpose of music is not the end of the composition… the whole point of the dancing is the dance.&quot; For me, software engineering is the same—the beauty is in the process.
+                    <p className="text-gray-700 font-inter leading-relaxed mb-6">
+                        My primary stack includes Java, Spring Boot, MongoDB, PostgreSQL, gRPC, Docker, and cloud technologies, with hands-on experience building and deploying production systems across domains such as fintech, e-commerce, HR systems, and workflow automation.
                     </p>
+                    <div className="mb-6">
+                        <p className="text-gray-700 font-inter leading-relaxed mb-3">I enjoy solving problems around:</p>
+                        <ul className="space-y-1 pl-2">
+                            {[
+                                'Backend architecture and API design',
+                                'Distributed systems and microservices',
+                                'Database design and performance optimization',
+                                'Event-driven systems and asynchronous processing',
+                                'Cloud infrastructure and containerized deployments',
+                                'Reliability, resilience, and scalable software design',
+                            ].map((item, i) => (
+                                <li key={i} className="text-gray-700 font-inter text-sm flex items-start gap-2">
+                                    <span className="font-mono text-gray-500 mt-0.5">•</span>
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    <p className="text-gray-700 font-inter leading-relaxed mb-6">
+                        Beyond writing code, I am deeply interested in the engineering principles behind great systems—studying topics such as distributed systems, data-intensive applications, system design, and software architecture to continuously improve how I build software.
+                    </p>
+                    <p className="text-gray-700 font-inter leading-relaxed mb-6">
+                        I enjoy collaborating with teams that value technical excellence, ownership, and building products that create meaningful impact.
+                    </p>
+                    <div className="bg-gray-50 border border-gray-200 p-5">
+                        <p className="text-gray-700 font-inter leading-relaxed mb-3 font-semibold text-sm uppercase tracking-wider">Currently open to opportunities involving:</p>
+                        <ul className="space-y-1">
+                            {[
+                                'Backend Engineering',
+                                'Software Engineering',
+                                'Distributed Systems',
+                                'Platform Engineering',
+                                'Cloud & Infrastructure Engineering',
+                            ].map((item, i) => (
+                                <li key={i} className="text-gray-700 font-inter text-sm flex items-center gap-2">
+                                    <span className="text-black font-bold">✓</span>
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
 
                 {/* Currently Section */}
